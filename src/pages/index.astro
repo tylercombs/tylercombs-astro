@@ -1,58 +1,102 @@
 ---
-// Component Imports
-import Tour from '../components/Tour.astro';
-// You can import components from any supported Framework here!
-
-
-// Component Script:
-// You can write any JavaScript/TypeScript that you'd like here.
-// It will run during the build, but never in the browser.
-// All variables are available to use in the HTML template below.
-let title = 'My Astro Site';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
+import BaseLayout from '../layouts/BaseLayout.astro'
 ---
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>{title}</title>
+<BaseLayout title="Tyler Combs - Creative Web Designer">
+  <style lang="scss">
+    :root {
+      --color-background: var(--color-white);
+      --color-heading: var(--color-red);
+      --color-menu-background: var(--color-red);
+      --color-button-primary-background: var(--color-red);
+      --color-button-menu-background: var(--color-red);
+      --color-button-menu-background-show: var(--color-black);
+      --color-nav-link: var(--color-white);
+      --color-mode-toggle-border: transparent;
+      --color-mode-toggle-active-background: var(--color-black);
+    }
 
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    
-    <link rel="stylesheet" href={Astro.resolve('../styles/global.css')}>
-    <link rel="stylesheet" href={Astro.resolve('../styles/home.css')}>
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-user-color-scheme]) {
+        --color-background: var(--color-red);
+        --color-heading: var(--color-white);
+        --color-menu-background: var(--color-white);
+        --color-button-primary-background: var(--color-white);
+        --color-button-menu-background: var(--color-black);
+        --color-button-menu-background-show: var(--color-red);
+        --color-nav-link: var(--color-red);
+        --color-mode-toggle-border: var(--color-black);
+        --color-mode-toggle-active-background: var(--color-red);
+      }
+    }
 
-    <style>
-        header {
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-            max-width: min(100%, 68ch);
-        }
-    </style>
-</head>
-<body>
-    <main>
-        <header>
-            <div>
-                <img width="60" height="80" src="/assets/logo.svg" alt="Astro logo">
-                <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
-            </div>
-        </header>
+    :root[data-user-color-scheme='dark'] {
+      --color-background: var(--color-red);
+      --color-heading: var(--color-white);
+      --color-menu-background: var(--color-white);
+      --color-button-primary-background: var(--color-white);
+      --color-button-menu-background: var(--color-black);
+      --color-button-menu-background-show: var(--color-red);
+      --color-nav-link: var(--color-red);
+      --color-mode-toggle-border: var(--color-black);
+      --color-mode-toggle-active-background: var(--color-red);
+    }
 
-        <Tour />
+    main {
+      padding: 1.25rem;
 
-        <!--
-           - You can also use imported framework components directly in your markup!
-           -
-           - Note: by default, these components are NOT interactive on the client.
-           - The `:visible` directive tells Astro to make it interactive.
-           -
-           - See https://docs.astro.build/core-concepts/component-hydration/ 
-           -->
+      @media (min-width: 390px) {
+        padding: 2.5rem;
+      }
 
-    </main>
-</body>
-</html>
+      @media (min-width: 1200px) {
+        display: grid;
+        grid-template-columns: 1fr 768px;
+      }
+    }
+
+    .content {
+      margin: 0 auto;
+      max-width: 768px;
+
+      @media (min-width: 1200px) {
+        grid-column: 2 / 3;
+      }
+    }
+
+    h1 {
+      color: var(--color-heading);
+    }
+
+    p {
+      margin-bottom: 1.875rem;
+
+      @media (min-width: 390px) {
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    .links {
+      @media (min-width: 768px) {
+        display: flex;
+        gap: 1.25rem;
+      }
+    }
+
+    .button--primary {
+      &::before {
+        background-color: var(--color-heading);
+      }
+    }
+  </style>
+
+  <main>
+    <div class="content">
+      <h1>I’m Tyler, a creative web developer.</h1>
+      <p>From graphic designer to full-stack developer, I’ve been building the web for more than ten years. I love creating fast, accessible, and delightful user experiences.</p>
+      <div class="links">
+        <a class="button button--secondary" href="/about">About Me</a>
+        <a class="button button--primary" href="/contact">Get in Touch</a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
