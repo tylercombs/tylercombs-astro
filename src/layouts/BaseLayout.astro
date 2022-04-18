@@ -47,7 +47,9 @@ const { canonicalURL } = Astro.request;
   </head>
   <body>
     <Header />
-    <slot></slot>
+    <main id="main">
+      <slot></slot>
+    </main>
     <Footer />
   </body>
 </html>

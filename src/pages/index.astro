@@ -4,67 +4,71 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 <BaseLayout title="Tyler Combs - Creative Web Designer">
   <style lang="scss">
     :root {
-      --color-background: var(--color-white);
-      --color-heading: var(--color-red);
-      --color-menu-background: var(--color-red);
-      --color-button-primary-background: var(--color-red);
-      --color-button-menu-background: var(--color-red);
-      --color-button-menu-background-show: var(--color-black);
-      --color-nav-link: var(--color-white);
-      --color-mode-toggle-border: transparent;
-      --color-mode-toggle-active-background: var(--color-black);
+      /* Light Mode */
+      --button--primary__background-color: var(--red);
+      --button--primary__color: var(--white);
+      --heading__color: var(--red);
+      --body__background-color: var(--white);
+      --site-header__background-color: var(--red);
+      --menu-toggle__background-color: var(--red);
+      --menu-toggle--show__background-color: var(--black);
+      --nav-link__color: var(--white);
+      --color-scheme-toggle__border-color: var(--white);
+      --color-scheme-toggle__active__background-color: var(--black);
+
+      @media (min-width: 1000px) {
+        --nav-link__color: var(--black);
+        --color-scheme-toggle__border-color: var(--black);
+        --color-scheme-toggle__active__background-color: var(--red);
+      }
     }
 
     @media (prefers-color-scheme: dark) {
       :root:not([data-user-color-scheme]) {
-        --color-background: var(--color-red);
-        --color-heading: var(--color-white);
-        --color-menu-background: var(--color-white);
-        --color-button-primary-background: var(--color-white);
-        --color-button-menu-background: var(--color-black);
-        --color-button-menu-background-show: var(--color-red);
-        --color-nav-link: var(--color-red);
-        --color-mode-toggle-border: var(--color-black);
-        --color-mode-toggle-active-background: var(--color-red);
+        /* Dark Mode */
+        --button--primary__background-color: var(--white);
+        --button--primary__color: var(--black);
+        --heading__color: var(--white);
+        --body__background-color: var(--red);
+        --site-header__background-color: var(--white);
+        --menu-toggle__background-color: var(--black);
+        --menu-toggle--show__background-color: var(--red);
+        --nav-link__color: var(--red);
+        --color-scheme-toggle__border-color: var(--black);
+        --color-scheme-toggle__active__background-color: var(--red);
+
+        @media (min-width: 1000px) {
+          --nav-link__color: var(--white);
+          --color-scheme-toggle__border-color: transparent;
+          --color-scheme-toggle__active__background-color: var(--black)
+        }
       }
     }
 
     :root[data-user-color-scheme='dark'] {
-      --color-background: var(--color-red);
-      --color-heading: var(--color-white);
-      --color-menu-background: var(--color-white);
-      --color-button-primary-background: var(--color-white);
-      --color-button-menu-background: var(--color-black);
-      --color-button-menu-background-show: var(--color-red);
-      --color-nav-link: var(--color-red);
-      --color-mode-toggle-border: var(--color-black);
-      --color-mode-toggle-active-background: var(--color-red);
-    }
+      /* Dark Mode */
+      --button--primary__background-color: var(--white);
+      --button--primary__color: var(--black);
+      --heading__color: var(--white);
+      --body__background-color: var(--red);
+      --site-header__background-color: var(--white);
+      --menu-toggle__background-color: var(--black);
+      --menu-toggle--show__background-color: var(--red);
+      --nav-link__color: var(--red);
+      --color-scheme-toggle__border-color: var(--black);
+      --color-scheme-toggle__active__background-color: var(--red);
 
-    main {
-      padding: 1.25rem;
-
-      @media (min-width: 390px) {
-        padding: 2.5rem;
-      }
-
-      @media (min-width: 1200px) {
-        display: grid;
-        grid-template-columns: 1fr 768px;
+      @media (min-width: 1000px) {
+        --nav-link__color: var(--white);
+        --color-scheme-toggle__border-color: transparent;
+        --color-scheme-toggle__active__background-color: var(--black)
       }
     }
 
-    .content {
-      margin: 0 auto;
-      max-width: 768px;
-
-      @media (min-width: 1200px) {
+    .intro {
+      @media (min-width: 1000px) {
         grid-column: 2 / 3;
       }
-    }
-
-    h1 {
-      color: var(--color-heading);
     }
 
     p {
@@ -74,29 +78,14 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         margin-bottom: 2.5rem;
       }
     }
-
-    .links {
-      @media (min-width: 768px) {
-        display: flex;
-        gap: 1.25rem;
-      }
-    }
-
-    .button--primary {
-      &::before {
-        background-color: var(--color-heading);
-      }
-    }
   </style>
 
-  <main>
-    <div class="content">
-      <h1>I’m Tyler, a creative web developer.</h1>
-      <p>From graphic designer to full-stack developer, I’ve been building the web for more than ten years. I love creating fast, accessible, and delightful user experiences.</p>
-      <div class="links">
-        <a class="button button--secondary" href="/about">About Me</a>
-        <a class="button button--primary" href="/contact">Get in Touch</a>
-      </div>
+  <div class="intro">
+    <h1>I’m Tyler, a creative web developer.</h1>
+    <p>From graphic designer to full-stack developer, I’ve been building the web for more than ten years. I love creating fast, accessible, and delightful user experiences.</p>
+    <div class="links">
+      <a class="button button--secondary" href="/about">About Me</a>
+      <a class="button button--primary" href="/contact">Get in Touch</a>
     </div>
-  </main>
+  </div>
 </BaseLayout>

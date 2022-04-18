@@ -3,6 +3,220 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 ---
 <BaseLayout title="About Me - Tyler Combs">
   <style lang="scss">
+    :root {
+      --button--primary__background-color: var(--red);
+      --button--primary__color: var(--white);
+      --heading__color: var(--blue);
+      --body__background-color: var(--white);
+      --site-header__background-color: var(--blue);
+      --menu-toggle__background-color: var(--blue);
+      --menu-toggle--show__background-color: var(--black);
+      --nav-link__color: var(--white);
+      --color-scheme-toggle__border-color: transparent;
+      --color-scheme-toggle__active__background-color: var(--black);
+
+      @media (min-width: 1000px) {
+        --nav-link__color: var(--black);
+        --color-scheme-toggle__border-color: var(--black);
+        --color-scheme-toggle__active__background-color: var(--blue);
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-user-color-scheme]) {
+        /* Dark Mode */
+        --button--primary__background-color: var(--white);
+        --button--primary__color: var(--black);
+        --heading__color: var(--white);
+        --body__background-color: var(--blue);
+        --site-header__background-color: var(--white);
+        --menu-toggle__background-color: var(--black);
+        --menu-toggle--show__background-color: var(--blue);
+        --nav-link__color: var(--blue);
+        --color-scheme-toggle__border-color: var(--black);
+        --color-scheme-toggle__active__background-color: var(--blue);
+
+        @media (min-width: 1000px) {
+          --nav-link__color: var(--white);
+          --color-scheme-toggle__border-color: transparent;
+          --color-scheme-toggle__active__background-color: var(--black)
+        }
+      }
+    }
+
+    :root[data-user-color-scheme='dark'] {
+      /* Dark Mode */
+      --button--primary__background-color: var(--white);
+      --button--primary__color: var(--black);
+      --heading__color: var(--white);
+      --body__background-color: var(--blue);
+      --site-header__background-color: var(--white);
+      --menu-toggle__background-color: var(--black);
+      --menu-toggle--show__background-color: var(--blue);
+      --nav-link__color: var(--blue);
+      --color-scheme-toggle__border-color: var(--black);
+      --color-scheme-toggle__active__background-color: var(--blue);
+
+      @media (min-width: 1000px) {
+        --nav-link__color: var(--white);
+        --color-scheme-toggle__border-color: transparent;
+        --color-scheme-toggle__active__background-color: var(--black)
+      }
+    }
+
+    .intro {
+      @media (min-width: 1000px) {
+        grid-column: 1 / 2;
+      }
+    }
+
+    p {
+      margin-bottom: 1.875rem;
+
+      @media (min-width: 390px) {
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    .content {
+      @media (min-width: 1200px) {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr), minmax(0, 1fr);
+      }
+
+      h2 {
+        color: var(--heading__color);
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        font-variation-settings: 'wdth' 105;
+
+        @media (min-width: 390px) {
+          font-size: 2rem;
+          font-variation-settings: 'wdth' 125;
+        }
+      }
+
+      section {
+        margin-bottom: 2.5rem;
+      }
+
+      .skills {
+        ul {
+          list-style-type: none;
+          margin-top: 0;
+          padding-left: 0;
+
+          li {
+            font-size: 1.25rem;
+            padding-left: 0.5em;
+            text-indent: -0.5em;
+          }
+        }
+      }
+
+      .employment,
+      .education {
+
+        h3 {
+          font-size: 1.25rem;
+          font-variation-settings: 'wdth' 105;
+          font-weight: 400;
+
+          @media (min-width: 768px) {
+            font-size: 1.5rem;
+          }
+
+          strong {
+            margin-right: 0.5em;
+          }
+
+          span {
+            display: flex;
+            flex: 1 0 auto;
+            justify-content: space-between;
+
+            @media (min-width: 768px) {
+              display: inline-flex;
+            }
+
+            span {
+              display: inline;
+              flex: auto;
+
+              &:last-of-type {
+                text-align: end;
+              }
+            }
+          }
+        }
+
+        ul {
+          font-size: 1rem;
+          line-height: 1.5;
+          margin-bottom: 1.5rem;
+          padding-left: 0;
+        }
+      }
+    }
   </style>
-  <h1>About Me</h1>
+
+  <div class="intro">
+    <h1>About Me</h1>
+    <p>From graphic designer to full-stack developer, I’ve been building the web for more than ten years. I love creating fast, accessible, and delightful user experiences.</p>
+    <div class="links">
+      <a class="button button--primary" href="/contact">Get in Touch</a>
+    </div>
+  </div>
+  <div class="content">
+    <section class="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li><strong>JavaScript</strong>, React, Next.js, Prisma, Firebase, Astro</li>
+        <li><strong>PHP</strong>, WordPress</li>
+        <li><strong>CSS</strong>, Sass, Bootstrap, CSS Modules, WCAG 2.0</li>
+        <li><strong>Design</strong>, Figma, Sketch, Adobe Creative Cloud</li>
+      </ul>
+    </section>
+
+    <section class="employment">
+      <h2>Employment</h2>
+      <h3><strong>Senior Web Developer</strong> <span>West Advertising</span> <span>2020&ndash;Present</span></h3>
+      <ul>
+        <li>Built React web app with Next.js, Prisma, and PostgreSQL on Vercel, featuring mailing list CSV imports and exports, personal URL routing and authentication, CRM integration, and admin dashboard.</li>
+        <li>Executed high fidelity frontend to Mazda Digital Certified guidelines from scratch in Sass and JavaScript.</li>
+        <li>Hired and mentored a junior developer.</li>
+        <li>Advocated for web accessibility and maintained WCAG 2.0 AA compliance.</li>
+        <li>Audited and optimized website performance with techniques including webp/avif image formats, lazyloading, svg assets, minification, etc.</li>
+        <li>Defined Google Analytics goals and implemented analytics event triggers across client sites.</li>
+      </ul>
+
+      <h3><strong>Web Developer</strong> <span>West Advertising</span> <span>2017&ndash;2020</span></h3>
+      <ul>
+        <li>Built and maintained ten auto dealership websites averaging up to 100,000 pageviews per month per site, featuring inventory feeds, vehicle data and media APIs, and ADF/XML CRM integrations.</li>
+        <li>Administered DigitalOcean and ServerPilot VPSs, DNS, SSH/SFTP, cron jobs, MySQL tuning, phpMyAdmin and .htaccess rules for auto dealership sites.</li>
+        <li>Created price unlocking features for auto dealership inventory with email link and cookie authentication, dynamic html emails, with scheduled reminders.</li>
+        <li>Internationalized WordPress sites for English and Spanish with cookie-based language switcher, subdirectory routing, gettext functions, and Poedit.</li>
+        <li>Built WordPress plugins for scheduled import/export of CSV records to/from posts with attached media.</li>
+      </ul>
+
+      <h3><strong>Graphic & Web Designer</strong> <span>West Advertising</span> <span>2014&ndash;2017</span></h3>
+      <ul>
+        <li>Built and tested weekly cross-platform HTML emails for multiple clients.</li>
+        <li>Designed print, display, and outdoor advertisements, promotional posters, and greeting cards.</li>
+        <li>Updated website content and graphics, including landing pages, blogs, videos, offers, and specials.</li>
+      </ul>
+
+      <h3><strong>Art Director</strong> <span>Nimblefish Technologies</span> <span>2013&ndash;2014</span></h3>
+      <ul>
+        <li>Creative strategy, website and email design, branding, and video editing on automated marketing campaigns for clients including Disney Vacation Club and Florida Blue.</li>
+        <li>Jump-started adoption of mobile and responsive web development at Nimblefish.</li>
+      </ul>
+    </section>
+
+    <section class="education">
+      <h2>Education</h2>
+      <h3><strong>Bachelor of Arts, Fine Art</strong> <span>The Evergreen State College</span> <span>2004</span></h3>
+    </section>
+  </div>
 </BaseLayout>
