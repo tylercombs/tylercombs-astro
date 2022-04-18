@@ -17,14 +17,12 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    :root:not([data-user-color-scheme]) {
-      --button--secondary__color: var(--white);
-      --button--secondary__border-color: var(--white);
-      --color-scheme-toggle__dark-color: var(--white);
-      --color-scheme-toggle__light-color: var(--black);
-      --color-scheme-toggle__clip-path: circle(27px at 74px 27px);
-    }
+  :root:not([data-user-color-scheme]) {
+    --button--secondary__color: var(--white);
+    --button--secondary__border-color: var(--white);
+    --color-scheme-toggle__dark-color: var(--white);
+    --color-scheme-toggle__light-color: var(--black);
+    --color-scheme-toggle__clip-path: circle(27px at 74px 27px);
   }
 }
 

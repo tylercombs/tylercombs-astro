@@ -67,6 +67,10 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       }
     }
 
+    .content {
+      position: relative;
+    }
+
     .intro {
       @media (min-width: 1000px) {
         grid-column: 1 / 2;
@@ -88,6 +92,14 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     }
 
     form {
+      opacity: 1;
+      transition: opacity 400ms;
+
+      &.hide {
+        opacity: 0;
+        transition: opacity 400ms;
+      }
+
       label {
         color: var(--black);
         display: block;
@@ -124,14 +136,31 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         cursor: pointer;
       }
     }
+
+    #thanks {
+      position: absolute;
+      font-size: 1.5rem;
+      font-variation-settings: 'wdth' 125;
+      font-weight: 800;
+      opacity: 0;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      transition: opacity 400ms;
+
+      &.show {
+        opacity: 1;
+        transition: opacity 400ms;
+      }
+    }
   </style>
 
   <div class="intro">
     <h1>Get in Touch</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima similique reiciendis recusandae ut totam, deleniti autem sint cupiditate impedit incidunt?</p>
+    <p>Interested in working with me? Just want to say hello? Send me a message!</p>
   </div>
   <div class="content">
-    <form name="contact" method="POST" data-netlify="true">
+    <form id="contactForm" name="contact" method="POST" data-netlify="true">
       <label for="name">Name</label>
       <div class="input-wrap">
         <input type="text" name="name" id="name" required>
@@ -146,5 +175,25 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       </div>
       <button type="submit" class="button button--primary">Send</button>
     </form>
+    <div id="thanks">Thank You!</div>
   </div>
 </BaseLayout>
+
+<script>
+  const contactForm = document.getElementById("contactForm");
+  const thanks = document.getElementById('thanks');
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(contactForm);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => {
+        contactForm.classList.add('hide');
+        thanks.classList.add('show');
+      })
+      .catch((error) => console.log(error));
+  });
+</script>
