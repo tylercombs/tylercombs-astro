@@ -276,6 +276,12 @@ const path = '/' + url.replace(Astro.site, '');
 
     input {
       @include visually-hidden;
+
+      &#colorSchemeLight:focus ~ label[for='colorSchemeLight'],
+      &#colorSchemeDark:focus ~ label[for='colorSchemeDark'] {
+        outline: 1px auto Highlight;
+        outline: 1px auto -webkit-focus-ring-color;
+      }
     }
 
     label {
