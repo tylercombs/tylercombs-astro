@@ -2,12 +2,18 @@
 @use 'mixins';
 
 :root {
-  --red: hsl(12, 100%, 57%);
-  --red-dark: hsl(12, 100%, calc(57% - 5%));
-  --blue: hsl(204, 56%, 44%);
-  --yellow: hsl(49, 100%, 33%);
-  --black: hsl(120, 100%, 8%);
-  --white: hsl(36, 100%, 96%);
+  --red-hsl: 12, 100%, 57%;
+  --red: hsl(var(--red-hsl));
+  --red-dark-hsl: 12, 100%, calc(57% - 5%);
+  --red-dark: hsl(var(--red-dark-hsl));
+  --blue-hsl: 204, 56%, 44%;
+  --blue: hsl(var(--blue-hsl));
+  --yellow-hsl: 49, 100%, 33%;
+  --yellow: hsl(var(--yellow-hsl));
+  --black-hsl: 120, 100%, 8%;
+  --black: hsl(var(--black-hsl));
+  --white-hsl: 36, 100%, 96%;
+  --white: hsl(var(--white-hsl));
 
   --button--secondary__color: var(--black);
   --button--secondary__border-color: var(--black);
