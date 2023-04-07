@@ -2,7 +2,7 @@
 @use 'mixins';
 
 :root {
-  --red-hsl: 12, 100%, 57%;
+  --red-hsl: 12 100% 57%;
   --red: hsl(var(--red-hsl));
   --red-dark-hsl: 12, 100%, calc(57% - 5%);
   --red-dark: hsl(var(--red-dark-hsl));
@@ -158,6 +158,11 @@ h1 {
 
   @media (min-width: 1200px) {
     max-width: calc(50% - (1.25rem / 2));
+  }
+
+  &:focus {
+    outline: solid 0.25rem var(--link--focus__outline-color);
+    outline-offset: 0.5rem;
   }
 
   &.button--primary {
