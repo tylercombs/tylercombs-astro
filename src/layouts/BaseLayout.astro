@@ -7,7 +7,7 @@ const {
   title,
   description = "From graphic designer to full-stack developer, I've been building the web for more than ten years. I love creating fast, accessible, and delightful user experiences.",
 } = Astro.props;
-const url = new URL(Astro.url.pathname, Astro.site)
+const url = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang="en" class="no-js">
@@ -20,8 +20,6 @@ const url = new URL(Astro.url.pathname, Astro.site)
     <title>{title}</title>
 
     <!-- preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Async JS -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -44,10 +42,6 @@ const url = new URL(Astro.url.pathname, Astro.site)
     </script>
 
     <!-- CSS -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100,400;0,100,800;0,125,400;0,125,808;1,100,400;1,100,800;1,125,400;1,125,808&display=swap"
-      rel="stylesheet"
-    />
 
     <!-- preload -->
     <!-- Defer JS -->

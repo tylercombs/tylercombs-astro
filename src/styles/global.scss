@@ -40,6 +40,26 @@
   --color-scheme-toggle__clip-path: circle(27px at 74px 27px);
 }
 
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/archivo-variable-font-wdth-wght.woff2')
+    format('woff2-variations');
+  font-weight: 400 800;
+  font-stretch: 105% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/archivo-italic-variable-font-wdth-wght.woff2')
+    format('woff2-variations');
+  font-weight: 400 800;
+  font-stretch: 105% 125%;
+  font-style: italic;
+  font-display: swap;
+}
+
 body {
   background-color: var(--body__background-color);
   font-family: 'Archivo', sans-serif;
