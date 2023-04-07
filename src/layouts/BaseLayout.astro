@@ -1,26 +1,32 @@
 ---
+import '../styles/global.scss';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const { title, description = 'From graphic designer to full-stack developer, I\'ve been building the web for more than ten years. I love creating fast, accessible, and delightful user experiences.' } = Astro.props;
-const { canonicalURL } = Astro.request;
+const {
+  title,
+  description = "From graphic designer to full-stack developer, I've been building the web for more than ten years. I love creating fast, accessible, and delightful user experiences.",
+} = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site)
 ---
+
 <html lang="en" class="no-js">
   <head>
     <!-- meta charset/http-equiv/viewport -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- title -->
     <title>{title}</title>
 
     <!-- preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Async JS -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J9CKP7R2Q0"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J9CKP7R2Q0"
+    ></script>
 
     <!-- CSS that includes @import -->
     <!-- JS -->
@@ -29,36 +35,40 @@ const { canonicalURL } = Astro.request;
     </script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
 
       gtag('config', 'G-J9CKP7R2Q0');
     </script>
 
     <!-- CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100,400;0,100,800;0,125,400;0,125,808;1,100,400;1,100,800;1,125,400;1,125,808&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href={Astro.resolve('../styles/global.scss')}>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100,400;0,100,800;0,125,400;0,125,808;1,100,400;1,100,800;1,125,400;1,125,808&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- preload -->
     <!-- Defer JS -->
     <!-- prefetch / prerender -->
     <!-- Everything else ('SEO' meta tags, icons, Open Graph, etc.) -->
-    <meta name="description" content={description}>
+    <meta name="description" content={description} />
 
-    <meta property="og:title" content={title}>
-    <meta property="og:type" content="website">
-    <meta property="og:url" content={canonicalURL}>
-    <meta property="og:image" content="">
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content="" />
 
-    <link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
-    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/favicon.ico" sizes="any" /><!-- 32×32 -->
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" /><!-- 180×180 -->
+    <link rel="manifest" href="/manifest.webmanifest" />
   </head>
   <body>
     <Header />
     <main id="main">
-      <slot></slot>
+      <slot />
     </main>
     <Footer />
   </body>

@@ -1,5 +1,5 @@
 ---
-  import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Tyler Combs - Creative Web Designer">
@@ -16,6 +16,7 @@
       --nav-link__color: var(--white);
       --color-scheme-toggle__border-color: var(--white);
       --color-scheme-toggle__active__background-color: var(--black);
+      --link--focus__outline-color: var(--blue);
 
       @media (min-width: 1000px) {
         --nav-link__color: var(--black);
@@ -41,7 +42,7 @@
         @media (min-width: 1000px) {
           --nav-link__color: var(--white);
           --color-scheme-toggle__border-color: transparent;
-          --color-scheme-toggle__active__background-color: var(--black)
+          --color-scheme-toggle__active__background-color: var(--black);
         }
       }
     }
@@ -62,7 +63,7 @@
       @media (min-width: 1000px) {
         --nav-link__color: var(--white);
         --color-scheme-toggle__border-color: transparent;
-        --color-scheme-toggle__active__background-color: var(--black)
+        --color-scheme-toggle__active__background-color: var(--black);
       }
     }
 
@@ -83,8 +84,11 @@
 
   <div class="intro">
     <h1>I’m Tyler, a creative web developer.</h1>
-    <p>From graphic designer to full-stack developer, I’ve been creating for the web for more than ten years. I love
-      creating fast, accessible, and delightful user experiences.</p>
+    <p>
+      From graphic designer to full-stack developer, I’ve been creating for the
+      web for more than ten years. I love creating fast, accessible, and
+      delightful user experiences.
+    </p>
     <div class="links">
       <a class="button button--secondary" href="/about">About Me</a>
       <a class="button button--primary" href="/contact">Get in Touch</a>

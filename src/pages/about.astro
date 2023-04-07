@@ -1,5 +1,5 @@
 ---
-  import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="About Me - Tyler Combs">
@@ -15,6 +15,7 @@
       --nav-link__color: var(--white);
       --color-scheme-toggle__border-color: transparent;
       --color-scheme-toggle__active__background-color: var(--black);
+      --link--focus__outline-color: var(--red);
 
       @media (min-width: 1000px) {
         --nav-link__color: var(--black);
@@ -40,7 +41,7 @@
         @media (min-width: 1000px) {
           --nav-link__color: var(--white);
           --color-scheme-toggle__border-color: transparent;
-          --color-scheme-toggle__active__background-color: var(--black)
+          --color-scheme-toggle__active__background-color: var(--black);
         }
       }
     }
@@ -61,7 +62,7 @@
       @media (min-width: 1000px) {
         --nav-link__color: var(--white);
         --color-scheme-toggle__border-color: transparent;
-        --color-scheme-toggle__active__background-color: var(--black)
+        --color-scheme-toggle__active__background-color: var(--black);
       }
     }
 
@@ -118,7 +119,6 @@
 
       .employment,
       .education {
-
         h3 {
           font-size: 1.25rem;
           font-variation-settings: 'wdth' 105;
@@ -164,8 +164,11 @@
 
   <div class="intro">
     <h1>About Me</h1>
-    <p>From graphic designer to full-stack developer, I’ve been building the web for more than ten years. I love
-      creating fast, accessible, and delightful user experiences.</p>
+    <p>
+      From graphic designer to full-stack developer, I’ve been building the web
+      for more than ten years. I love creating fast, accessible, and delightful
+      user experiences.
+    </p>
     <div class="links">
       <a class="button button--primary" href="/contact">Get in Touch</a>
     </div>
@@ -174,9 +177,13 @@
     <section class="skills">
       <h2>Skills</h2>
       <ul>
-        <li><strong>JavaScript</strong>, React, Next.js, TypeScript, Prisma, jQuery, Node.js, Express, Firebase, Astro
+        <li>
+          <strong>JavaScript</strong>, React, Next.js, TypeScript, Prisma,
+          jQuery, Node.js, Express, Firebase, Astro
         </li>
-        <li><strong>PHP</strong>, WordPress Themes/Plugins, MySQL, PostgreSQL</li>
+        <li>
+          <strong>PHP</strong>, WordPress Themes/Plugins, MySQL, PostgreSQL
+        </li>
         <li><strong>CSS</strong>, Sass, Bootstrap, CSS Modules, WCAG 2.0</li>
         <li><strong>Design</strong>, Figma, Sketch, Adobe Creative Cloud</li>
       </ul>
@@ -184,48 +191,109 @@
 
     <section class="employment">
       <h2>Employment</h2>
-      <h3><strong>Senior Web Developer</strong> <span>West Advertising</span> <span>2020&ndash;Present</span></h3>
+      <h3>
+        <strong>Senior Web Developer</strong>
+        <span>West Advertising</span>
+        <span>2020&ndash;Present</span>
+      </h3>
       <ul>
-        <li>Built React web app with Next.js, TypeScript, Prisma, and PostgreSQL, featuring mailing list CSV
-          upload/parse/export, personal URL routing and authentication, CRM integration, and admin dashboard.</li>
-        <li>Built and maintained auto dealership websites averaging up to 100,000 pageviews per month per site,
-          featuring inventory feeds, vehicle data and media APIs, and ADF/XML CRM integrations.</li>
-        <li>Administered DigitalOcean and ServerPilot VPSs, DNS, SSH/SFTP, cron, phpMyAdmin, and .htaccess.</li>
-        <li>Executed high fidelity frontend to Mazda Digital Certified guidelines from scratch in Sass and JavaScript.
+        <li>
+          Built React web app with Next.js, TypeScript, Prisma, and PostgreSQL,
+          featuring mailing list CSV upload/parse/export, personal URL routing
+          and authentication, CRM integration, and admin dashboard.
+        </li>
+        <li>
+          Built and maintained auto dealership websites averaging up to 100,000
+          pageviews per month per site, featuring inventory feeds, vehicle data
+          and media APIs, and ADF/XML CRM integrations.
+        </li>
+        <li>
+          Administered DigitalOcean and ServerPilot VPSs, DNS, SSH/SFTP, cron,
+          phpMyAdmin, and .htaccess.
+        </li>
+        <li>
+          Executed high fidelity frontend to Mazda Digital Certified guidelines
+          from scratch in Sass and JavaScript.
         </li>
         <li>Hired and mentored a junior developer.</li>
-        <li>Advocated for web accessibility and maintained WCAG 2.0 AA compliance across projects.</li>
-        <li>Defined Google Analytics goals and implemented analytics event triggers across client sites.</li>
+        <li>
+          Advocated for web accessibility and maintained WCAG 2.0 AA compliance
+          across projects.
+        </li>
+        <li>
+          Defined Google Analytics goals and implemented analytics event
+          triggers across client sites.
+        </li>
       </ul>
 
-      <h3><strong>Web Developer</strong> <span>West Advertising</span> <span>2017&ndash;2020</span></h3>
+      <h3>
+        <strong>Web Developer</strong>
+        <span>West Advertising</span>
+        <span>2017&ndash;2020</span>
+      </h3>
       <ul>
-        <li>Created price unlocking features for auto dealership inventory with email link and cookie authentication,
-          dynamic html emails, scheduled reminders, and CRM integration.</li>
-        <li>Internationalized WordPress sites for English and Spanish with cookie-based language switcher, subdirectory
-          routing, gettext functions, and Poedit.</li>
-        <li>Built WordPress plugins for scheduled import/export of CSV records to/from posts with attached media.</li>
+        <li>
+          Created price unlocking features for auto dealership inventory with
+          email link and cookie authentication, dynamic html emails, scheduled
+          reminders, and CRM integration.
+        </li>
+        <li>
+          Internationalized WordPress sites for English and Spanish with
+          cookie-based language switcher, subdirectory routing, gettext
+          functions, and Poedit.
+        </li>
+        <li>
+          Built WordPress plugins for scheduled import/export of CSV records
+          to/from posts with attached media.
+        </li>
         <li>Established version control with Git for agency web projects.</li>
       </ul>
 
-      <h3><strong>Graphic & Web Designer</strong> <span>West Advertising</span> <span>2014&ndash;2017</span></h3>
+      <h3>
+        <strong>Graphic & Web Designer</strong>
+        <span>West Advertising</span>
+        <span>2014&ndash;2017</span>
+      </h3>
       <ul>
-        <li>Built and tested weekly cross-platform HTML emails for multiple clients.</li>
-        <li>Designed print, display, and outdoor advertisements, promotional posters, and greeting cards.</li>
-        <li>Updated website content and graphics, including landing pages, blogs, videos, offers, and specials.</li>
+        <li>
+          Built and tested weekly cross-platform HTML emails for multiple
+          clients.
+        </li>
+        <li>
+          Designed print, display, and outdoor advertisements, promotional
+          posters, and greeting cards.
+        </li>
+        <li>
+          Updated website content and graphics, including landing pages, blogs,
+          videos, offers, and specials.
+        </li>
       </ul>
 
-      <h3><strong>Art Director</strong> <span>Nimblefish Technologies</span> <span>2013&ndash;2014</span></h3>
+      <h3>
+        <strong>Art Director</strong>
+        <span>Nimblefish Technologies</span>
+        <span>2013&ndash;2014</span>
+      </h3>
       <ul>
-        <li>Creative strategy, website and email design, branding, and video editing on automated marketing campaigns
-          for clients including Disney Vacation Club and Florida Blue.</li>
-        <li>Jump-started adoption of mobile and responsive web development at Nimblefish.</li>
+        <li>
+          Creative strategy, website and email design, branding, and video
+          editing on automated marketing campaigns for clients including Disney
+          Vacation Club and Florida Blue.
+        </li>
+        <li>
+          Jump-started adoption of mobile and responsive web development at
+          Nimblefish.
+        </li>
       </ul>
     </section>
 
     <section class="education">
       <h2>Education</h2>
-      <h3><strong>Bachelor of Arts, Fine Art</strong> <span>The Evergreen State College</span> <span>2004</span></h3>
+      <h3>
+        <strong>Bachelor of Arts, Fine Art</strong>
+        <span>The Evergreen State College</span>
+        <span>2004</span>
+      </h3>
     </section>
   </div>
 </BaseLayout>

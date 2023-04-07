@@ -9,8 +9,8 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "astro": "^0.22.20",
+    "astro": "^2.1.8",
     "autoprefixer": "^10.4.0",
-    "sass": "^1.45.0"
+    "sass": "^1.60.0"
   }
 }
