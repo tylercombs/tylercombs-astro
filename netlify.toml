@@ -1,0 +1,8 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "no-referrer-when-downgrade"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "script-src 'unsafe-inline' https://www.googletagmanager.com; style-src 'unsafe-inline' https://fonts.googleapis.com; object-src 'none'; base-uri 'none'; require-trusted-types-for 'script'";
