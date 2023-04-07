@@ -457,17 +457,6 @@ const url = Astro.url.pathname;
   const menu = document.getElementById('menu');
   const focusableElements = getFocusableElements(menu);
 
-  const mql = window.matchMedia('(min-width: 1000px)');
-  mql.onchange = (e) => {
-    if (e.matches) {
-      console.log('matches');
-      openMenu();
-    } else {
-      console.log('not matches');
-      closeMenu();
-    }
-  };
-
   const openMenu = () => {
     header.classList.add('show');
     menuToggle.setAttribute('aria-expanded', 'true');
@@ -480,6 +469,18 @@ const url = Astro.url.pathname;
     focusableElements.forEach((element) =>
       element.setAttribute('tabindex', '-1')
     );
+  };
+
+  const mql = window.matchMedia('(min-width: 1000px)');
+  if (mql.matches) {
+    openMenu();
+  }
+  mql.onchange = (e) => {
+    if (e.matches) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
   };
 
   menuToggle.addEventListener('click', () => {
