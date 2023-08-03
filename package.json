@@ -9,8 +9,11 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "astro": "^2.1.8",
+    "astro": "^2.10.1",
     "autoprefixer": "^10.4.0",
-    "sass": "^1.60.0"
+    "sass": "^1.64.2"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^2.0.1"
   }
 }
