@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+// import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.scss';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -34,6 +34,27 @@ const url = new URL(Astro.url.pathname, Astro.site);
       document.documentElement.classList.remove('no-js');
     </script>
     <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      const STORAGE_KEY = 'color-scheme';
+      const setColorScheme = () => {
+        console.log('run');
+        if (localStorage.getItem(STORAGE_KEY)) {
+          document.documentElement.dataset.colorScheme =
+            localStorage.getItem(STORAGE_KEY);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.dataset.colorScheme = 'dark';
+        } else {
+          document.documentElement.dataset.colorScheme = 'light';
+        }
+      };
+
+      // Runs on initial navigation.
+      setColorScheme();
+
+      // Runs on view transitions navigation.
+      document.addEventListener('astro:after-swap', setColorScheme);
+    </script>
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -65,7 +86,7 @@ const url = new URL(Astro.url.pathname, Astro.site);
     <link rel="manifest" href="/manifest.webmanifest" />
 
     <!-- Astro View Transitions -->
-    <ViewTransitions />
+    <!-- <ViewTransitions /> -->
   </head>
   <body>
     <Header />

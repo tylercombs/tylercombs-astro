@@ -167,6 +167,9 @@ h1 {
   text-transform: uppercase;
   vertical-align: middle;
   width: 100%;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-in.
+  transition-duration: 300ms;
 
   @media (min-width: 414px) {
     font-variation-settings: 'wdth' 125;
@@ -189,30 +192,24 @@ h1 {
     outline-offset: 0.5rem;
   }
 
+  &:hover {
+    transform: scale(1.02);
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1); // ease-out.
+    transition-duration: 150ms;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
   &.button--primary {
     background-color: var(--button--primary__background-color);
     color: var(--button--primary__color);
-
-    &:hover {
-      transform: scale(1.02);
-    }
-
-    &:active {
-      transform: scale(0.98);
-    }
   }
 
   &.button--secondary {
     border: 3px solid var(--button--secondary__border-color);
     color: var(--button--secondary__color);
-
-    &:hover {
-      transform: scale(1.02);
-    }
-
-    &:active {
-      transform: scale(0.98);
-    }
   }
 
   + .button {

@@ -65,9 +65,14 @@ const url = Astro.url.pathname;
         color: var(--black);
         text-decoration: none;
         padding: 1rem;
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-in.
+        transition-duration: 300ms;
 
         &:hover {
           transform: scale(1.04);
+          transition-timing-function: cubic-bezier(0, 0, 0.2, 1); // ease-out.
+          transition-duration: 150ms;
         }
 
         &:focus {
@@ -145,9 +150,19 @@ const url = Astro.url.pathname;
             padding: 0.875rem;
             text-decoration: none;
             text-transform: uppercase;
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-in.
+            transition-duration: 300ms;
 
             &:hover {
               transform: scale(1.06);
+              transition-timing-function: cubic-bezier(
+                0,
+                0,
+                0.2,
+                1
+              ); // ease-out.
+              transition-duration: 150ms;
             }
 
             &:focus {
@@ -204,9 +219,14 @@ const url = Astro.url.pathname;
     justify-content: center;
     height: 3.75rem;
     width: 3.75rem;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-in.
+    transition-duration: 300ms;
 
     &:hover {
       transform: scale(1.04);
+      transition-timing-function: cubic-bezier(0, 0, 0.2, 1); // ease-out.
+      transition-duration: 150ms;
     }
 
     &:focus {
@@ -282,9 +302,14 @@ const url = Astro.url.pathname;
     position: relative;
     width: fit-content;
     z-index: 0;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-in.
+    transition-duration: 300ms;
 
     &:hover {
       transform: scale(1.04);
+      transition-timing-function: cubic-bezier(0, 0, 0.2, 1); // ease-out.
+      transition-duration: 150ms;
     }
 
     @media (min-width: 1000px) {
