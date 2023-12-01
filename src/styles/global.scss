@@ -1,7 +1,9 @@
 @use 'reset';
 @use 'mixins';
 
-:root {
+/* Light Color Scheme (Default + Override) */
+:root,
+:root[data-color-scheme='light'] {
   --red-hsl: 12 100% 57%;
   --red: hsl(var(--red-hsl));
   --red-dark-hsl: 12, 100%, calc(57% - 5%);
@@ -22,8 +24,9 @@
   --color-scheme-toggle__clip-path: circle(27px at 27px);
 }
 
+/* Dark Color Scheme (System Preference) */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-user-color-scheme]) {
+  :root {
     --button--secondary__color: var(--white);
     --button--secondary__border-color: var(--white);
     --color-scheme-toggle__dark-color: var(--white);
@@ -32,7 +35,8 @@
   }
 }
 
-[data-user-color-scheme='dark'] {
+/* Dark Color Scheme (Override) */
+:root[data-color-scheme='dark'] {
   --button--secondary__color: var(--white);
   --button--secondary__border-color: var(--white);
   --color-scheme-toggle__dark-color: var(--white);

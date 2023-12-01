@@ -433,6 +433,7 @@ const url = Astro.url.pathname;
             name="colorScheme"
             value="light"
             tabindex="-1"
+            checked
           />
           <label for="colorSchemeLight"
             ><span class="visually-hidden">Light Mode</span><svg
@@ -464,8 +465,60 @@ const url = Astro.url.pathname;
     </ul>
   </nav>
 </header>
-
+<script is:inline>
+// Check the dark-mode radio if the override is set to dark, or no override is set but the system prefers dark mode.
+if (
+  colorSchemeOverride === 'dark' ||
+  (!hasColorSchemeOverride &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches)
+) {
+  document.querySelector('#colorSchemeDark').checked = true;
+}
+</script>
 <script>
+  // Color Mode Toggle.
+  const setColorScheme = (scheme) => {
+    // Scheme was given.
+    if (scheme) {
+      // Update data-* attr on html.
+      document.documentElement.setAttribute('data-color-scheme', scheme);
+      // Persist in local storage.
+      window.localStorage.setItem('color-scheme', scheme);
+      // Make sure the checkbox is up-to-date.
+      let toggle = document.querySelector(
+        '#colorSchemeLight'
+      ) as HTMLInputElement;
+      if (scheme === 'dark') {
+        toggle = document.querySelector('#colorSchemeDark') as HTMLInputElement;
+      }
+      toggle.checked = true;
+    }
+  };
+
+  document.querySelectorAll('input[name="colorScheme"]').forEach((element) =>
+    element.addEventListener('change', (event) => {
+      event.preventDefault();
+      setColorScheme((event.target as HTMLInputElement).value);
+    })
+  );
+
+  // Keep an eye out for System Light/Dark Mode Changes.
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  mediaQuery.onchange = () => {
+    // Ignore change if there's an override set.
+    if (document.documentElement.getAttribute('data-color-scheme')) {
+      return;
+    }
+
+    // Make sure the checkbox is up-to-date
+    if (mediaQuery.matches) {
+      const toggle = document.querySelector(
+        '#colorSchemeDark'
+      ) as HTMLInputElement;
+      toggle.checked = true;
+    }
+  };
+
   // Menu Toggle.
   const getFocusableElements = (parent) => {
     if (!parent) {
@@ -501,8 +554,8 @@ const url = Astro.url.pathname;
   if (mql.matches) {
     openMenu();
   }
-  mql.onchange = (e) => {
-    if (e.matches) {
+  mql.onchange = (event) => {
+    if (event.matches) {
       openMenu();
     } else {
       closeMenu();
@@ -516,46 +569,4 @@ const url = Astro.url.pathname;
       openMenu();
     }
   });
-
-  // Color Mode Toggle.
-  const STORAGE_KEY = 'user-color-scheme';
-
-  const colorSchemeRadios = document.querySelectorAll(
-    'input[name="colorScheme"]'
-  );
-
-  const applySetting = (setting = localStorage.getItem(STORAGE_KEY)) => {
-    if (setting) {
-      document.documentElement.setAttribute('data-user-color-scheme', setting);
-      colorSchemeRadios.forEach((element: HTMLInputElement) => {
-        if (element.value === setting) {
-          const label: HTMLInputElement = document.querySelector(
-            `[for=${element.id}]`
-          );
-          if (label) {
-            label.classList.add('checked');
-            label.checked = true;
-          }
-        }
-      });
-    }
-  };
-
-  const toggleSetting = () => {
-    const input: HTMLInputElement = document.querySelector(
-      'input[name="colorScheme"]:checked'
-    );
-    const currentSetting = input.value;
-    localStorage.setItem(STORAGE_KEY, currentSetting);
-    return currentSetting;
-  };
-
-  colorSchemeRadios.forEach((element) =>
-    element.addEventListener('change', (event) => {
-      event.preventDefault();
-      applySetting(toggleSetting());
-    })
-  );
-
-  applySetting();
 </script>

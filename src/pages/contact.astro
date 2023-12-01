@@ -4,8 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="About Me - Tyler Combs">
   <style lang="scss">
-    :root {
-      /* Light Mode */
+    /* Light Color Scheme (Default + Override) */
+    :root,
+    :root[data-color-scheme='light'] {
       --site-header__background-color: var(--yellow);
       --button--primary__background-color: var(--red);
       --button--primary__color: var(--white);
@@ -27,9 +28,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     }
 
+    /* Dark Color Scheme (System Preference) */
     @media (prefers-color-scheme: dark) {
-      :root:not([data-user-color-scheme]) {
-        /* Dark Mode */
+      :root {
         --button--primary__background-color: var(--white);
         --heading__color: var(--white);
         --body__background-color: var(--yellow);
@@ -49,8 +50,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     }
 
-    :root[data-user-color-scheme='dark'] {
-      /* Dark Mode */
+    /* Dark Color Scheme (Override) */
+    :root[data-color-scheme='dark'] {
       --button--primary__background-color: var(--black);
       --heading__color: var(--white);
       --body__background-color: var(--yellow);
@@ -190,15 +191,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script>
-  const contactForm = document.getElementById('contactForm');
+  const contactForm = document.getElementById('contactForm') as HTMLFormElement;
   const thanks = document.getElementById('thanks');
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
     const formData = new FormData(contactForm);
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString(),
+      body: new URLSearchParams(formData as any).toString(),
     })
       .then(() => {
         contactForm.classList.add('hide');

@@ -4,7 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="About Me - Tyler Combs">
   <style lang="scss">
-    :root {
+    /* Light Color Scheme (Default + Override) */
+    :root,
+    :root[data-color-scheme='light'] {
       --button--primary__background-color: var(--red);
       --button--primary__color: var(--white);
       --heading__color: var(--blue);
@@ -24,9 +26,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     }
 
+    /* Dark Color Scheme (System Preference) */
     @media (prefers-color-scheme: dark) {
-      :root:not([data-user-color-scheme]) {
-        /* Dark Mode */
+      :root {
         --button--primary__background-color: var(--white);
         --button--primary__color: var(--black);
         --heading__color: var(--white);
@@ -46,8 +48,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     }
 
-    :root[data-user-color-scheme='dark'] {
-      /* Dark Mode */
+    /* Dark Color Scheme (Override) */
+    :root[data-color-scheme='dark'] {
       --button--primary__background-color: var(--white);
       --button--primary__color: var(--black);
       --heading__color: var(--white);

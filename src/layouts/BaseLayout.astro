@@ -33,26 +33,16 @@ const url = new URL(Astro.url.pathname, Astro.site);
     <script>
       document.documentElement.classList.remove('no-js');
     </script>
-    <script>
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-      const STORAGE_KEY = 'color-scheme';
-      const setColorScheme = () => {
-        console.log('run');
-        if (localStorage.getItem(STORAGE_KEY)) {
-          document.documentElement.dataset.colorScheme =
-            localStorage.getItem(STORAGE_KEY);
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          document.documentElement.dataset.colorScheme = 'dark';
-        } else {
-          document.documentElement.dataset.colorScheme = 'light';
-        }
-      };
-
-      // Runs on initial navigation.
-      setColorScheme();
-
-      // Runs on view transitions navigation.
-      document.addEventListener('astro:after-swap', setColorScheme);
+    <script is:inline>
+      // Check if there's any override. If so, let the markup know by setting an attribute on the <html> element
+      const colorSchemeOverride = window.localStorage.getItem('color-scheme');
+      const hasColorSchemeOverride = typeof colorSchemeOverride === 'string';
+      if (hasColorSchemeOverride) {
+        document.documentElement.setAttribute(
+          'data-color-scheme',
+          colorSchemeOverride
+        );
+      }
     </script>
     <script>
       window.dataLayer = window.dataLayer || [];
