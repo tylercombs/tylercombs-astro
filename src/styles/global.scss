@@ -1,5 +1,81 @@
 @use 'reset';
-@use 'mixins';
+@use 'mixins' as *;
+
+:root {
+  /* Type Scale. */
+  /* @link https://utopia.fyi/type/calculator?c=320,16,1.125,1672,20,1.2,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=m,2xl,l,12 */
+  /* 12.64px -> 13.89px */
+  --font-size-xs: clamp(0.79rem, 0.7715rem + 0.0925vw, 0.8681rem);
+  /* 14.22px -> 16.67px */
+  --font-size-sm: clamp(0.8888rem, 0.8525rem + 0.1812vw, 1.0419rem);
+  /* 16px -> 20px */
+  --font-size-md: clamp(1rem, 0.9408rem + 0.2959vw, 1.25rem);
+  /* 18px -> 24px */
+  --font-size-lg: clamp(1.125rem, 1.0362rem + 0.4438vw, 1.5rem);
+  /* 20.25px -> 28.8px */
+  --font-size-xl: clamp(1.2656rem, 1.1391rem + 0.6324vw, 1.8rem);
+  /* 22.78px -> 34.56px */
+  --font-size-2xl: clamp(1.4238rem, 1.2495rem + 0.8713vw, 2.16rem);
+  /* 25.63px -> 41.47px */
+  --font-size-3xl: clamp(1.6019rem, 1.3676rem + 1.1716vw, 2.5919rem);
+  /* 28.83px -> 49.77px */
+  --font-size-4xl: clamp(1.8019rem, 1.4921rem + 1.5488vw, 3.1106rem);
+  /* 32.44px -> 59.72px */
+  --font-size-5xl: clamp(2.0275rem, 1.6239rem + 2.0178vw, 3.7325rem);
+
+  --line-height-xs: 1.46;
+  --line-height-sm: 1.43;
+  --line-height-md: 1.4;
+  --line-height-lg: 1.36;
+  --line-height-xl: 1.32;
+  --line-height-2xl: 1.28;
+  --line-height-3xl: 1.22;
+  --line-height-4xl: 1.17;
+  --line-height-5xl: 1.1;
+
+  /* Spacing Scale. */
+  /* @link https://utopia.fyi/space/calculator?c=320,16,1.125,1672,20,1.2,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=m,2xl,l,12 */
+  /* 4px -> 5px */
+  --space-3xs: clamp(0.25rem, 0.2352rem + 0.074vw, 0.3125rem);
+  /* 8px -> 10px */
+  --space-2xs: clamp(0.5rem, 0.4704rem + 0.1479vw, 0.625rem);
+  /* 12px -> 15px */
+  --space-xs: clamp(0.75rem, 0.7056rem + 0.2219vw, 0.9375rem);
+  /* 16px -> 20px */
+  --space-s: clamp(1rem, 0.9408rem + 0.2959vw, 1.25rem);
+  /* 20px -> 30px */
+  --space-m: clamp(1.5rem, 1.4112rem + 0.4438vw, 1.875rem);
+  /* 32px -> 40px */
+  --space-l: clamp(2rem, 1.8817rem + 0.5917vw, 2.5rem);
+  /* 48px -> 60px */
+  --space-xl: clamp(3rem, 2.8225rem + 0.8876vw, 3.75rem);
+  /* 64px -> 80px */
+  --space-2xl: clamp(4rem, 3.7633rem + 1.1834vw, 5rem);
+  /* 96px -> 120px */
+  --space-3xl: clamp(6rem, 5.645rem + 1.7751vw, 7.5rem);
+
+  /* One-up pairs */
+  --space-3xs-2xs: clamp(0.25rem, 0.1612rem + 0.4438vw, 0.625rem);
+  --space-2xs-xs: clamp(0.5rem, 0.3964rem + 0.5178vw, 0.9375rem);
+  --space-xs-s: clamp(0.75rem, 0.6317rem + 0.5917vw, 1.25rem);
+  --space-s-m: clamp(1rem, 0.7929rem + 1.0355vw, 1.875rem);
+  --space-m-l: clamp(1.5rem, 1.2633rem + 1.1834vw, 2.5rem);
+  --space-l-xl: clamp(2rem, 1.5858rem + 2.071vw, 3.75rem);
+  --space-xl-2xl: clamp(3rem, 2.5266rem + 2.3669vw, 5rem);
+  --space-2xl-3xl: clamp(4rem, 3.1716rem + 4.142vw, 7.5rem); /* Custom pairs */
+  --space-s-l: clamp(1rem, 0.645rem + 1.7751vw, 2.5rem);
+
+  /* Grid */
+  /* @link https://utopia.fyi/grid/calculator?c=324,16,1.125,1760,20,1.2,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=m,2xl,xl,12 */
+  --grid-max-width: 110rem;
+  --grid-gutter: var(--space-m-2xl, clamp(1.5rem, 0.7103rem + 3.8997vw, 5rem));
+  --grid-columns: 12;
+
+  /* Variable Font Width */
+  --width-normal: 'wdth' 100;
+  --width-semi-expanded: 'wdth' 112.5;
+  --width-expanded: 'wdth' 125;
+}
 
 /* Light Color Scheme (Default + Override) */
 :root,
@@ -49,7 +125,7 @@
   src: url('/fonts/archivo-variable-font-wdth-wght.woff2')
     format('woff2-variations');
   font-weight: 400 800;
-  font-stretch: 105% 125%;
+  font-stretch: 100% 125%;
   font-style: normal;
   font-display: swap;
 }
@@ -59,7 +135,7 @@
   src: url('/fonts/archivo-italic-variable-font-wdth-wght.woff2')
     format('woff2-variations');
   font-weight: 400 800;
-  font-stretch: 105% 125%;
+  font-stretch: 100% 125%;
   font-style: italic;
   font-display: swap;
 }
@@ -67,72 +143,49 @@
 body {
   background-color: var(--body__background-color);
   font-family: 'Archivo', sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
+  @include font-size('md');
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
 
-main {
-  margin: 0 auto;
-  max-width: 1920px;
-  padding: 1rem 2rem;
+.grid-container {
+  max-width: var(--grid-max-width);
+  padding-inline: var(--grid-gutter);
+  margin-inline: auto;
   width: 100%;
+}
 
-  @media (min-width: 390px) {
-    padding: 2.5rem;
-  }
+.grid {
+  display: grid;
+  column-gap: var(--grid-gutter);
+  row-gap: var(--space-xl);
+}
 
-  @media (min-width: 1000px) {
-    display: grid;
-    gap: 2.5rem;
-    padding: 2.5rem;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  @media (min-width: 1400px) {
-    gap: 5rem;
-    padding: 5rem;
-  }
+main {
+  display: flex;
+  justify-content: center;
 }
 
 .intro {
-  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
   max-width: 80ch;
+  text-align: center;
 
   p {
-    font-size: 1.25rem;
-
-    @media (min-width: 390px) {
-      margin-bottom: 2.5rem;
-    }
-  }
-
-  @media (min-width: 390px) {
-    margin-bottom: 2.5rem;
-  }
-
-  @media (min-width: 1000px) {
-    margin: 0;
-    grid-column: 1 / 2;
+    @include font-size('lg');
   }
 
   .links {
-    max-width: 80ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    justify-content: center;
 
-    @media (min-width: 600px) {
-      display: flex;
+    @media screen and (min-width: 36rem) {
       flex-direction: row;
-      gap: 1.25rem;
-    }
-
-    @media (min-width: 1000px) {
-      display: block;
-    }
-
-    @media (min-width: 1200px) {
-      display: flex;
     }
   }
 }
@@ -143,92 +196,7 @@ main {
 
 h1 {
   color: var(--heading__color);
-  font-size: 2rem;
+  @include font-size('5xl');
   font-weight: 800;
-  margin-bottom: 1.25rem;
-  font-variation-settings: 'wdth' 115;
-
-  @media (min-width: 450px) {
-    font-size: 2.5rem;
-    font-variation-settings: 'wdth' 125;
-    margin-bottom: 2.5rem;
-  }
-}
-
-.button {
-  align-items: center;
-  background-color: transparent;
-  border: none;
-  border-radius: 99rem;
-  display: flex;
-  font-size: 1.25rem;
-  font-variation-settings: 'wdth' 105;
-  font-weight: 800;
-  justify-content: center;
-  height: 60px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  vertical-align: middle;
-  width: 100%;
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-in.
-  transition-duration: 300ms;
-
-  @media (min-width: 414px) {
-    font-variation-settings: 'wdth' 125;
-  }
-
-  @media (min-width: 600px) {
-    max-width: calc(50% - (1.25rem / 2));
-  }
-
-  @media (min-width: 1000px) {
-    max-width: none;
-  }
-
-  @media (min-width: 1200px) {
-    max-width: calc(50% - (1.25rem / 2));
-  }
-
-  &:focus {
-    outline: solid 0.25rem var(--link--focus__outline-color);
-    outline-offset: 0.5rem;
-  }
-
-  &:hover {
-    transform: scale(1.02);
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1); // ease-out.
-    transition-duration: 150ms;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-
-  &.button--primary {
-    background-color: var(--button--primary__background-color);
-    color: var(--button--primary__color);
-  }
-
-  &.button--secondary {
-    border: 3px solid var(--button--secondary__border-color);
-    color: var(--button--secondary__color);
-  }
-
-  + .button {
-    margin-top: 1.25rem;
-
-    @media (min-width: 600px) {
-      margin-top: 0;
-    }
-
-    @media (min-width: 1000px) {
-      margin-top: 1.25rem;
-    }
-
-    @media (min-width: 1200px) {
-      margin-top: 0;
-    }
-  }
+  font-variation-settings: var(--width-semi-expanded);
 }
