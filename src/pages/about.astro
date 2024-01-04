@@ -93,11 +93,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
         text-transform: uppercase;
-        font-variation-settings: 'wdth' 105;
+        font-variation-settings: var(--width-normal);
 
         @media (min-width: 390px) {
           font-size: 2rem;
-          font-variation-settings: 'wdth' 125;
+          font-variation-settings: var(--width-expanded);
         }
       }
 
@@ -125,7 +125,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           display: flex;
           flex-direction: column;
           font-size: 1.25rem;
-          font-variation-settings: 'wdth' 105;
+          font-variation-settings: var(--width-normal);
           font-weight: 400;
           margin-block-end: 1.5rem;
 
