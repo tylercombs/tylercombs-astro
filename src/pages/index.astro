@@ -1,55 +1,49 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
 ---
 
 <BaseLayout title="Tyler Combs - Creative Web Designer">
-  <style lang="scss">
-    /* Light Color Scheme (Default + Override) */
-    :root,
-    :root[data-color-scheme='light'] {
-      --button--primary__background-color: var(--red);
-      --button--primary__color: var(--white);
-      --heading__color: var(--red);
-      --body__background-color: var(--white);
-      --site-header__background-color: var(--red);
-      --menu-toggle__background-color: var(--red);
-      --menu-toggle--show__background-color: var(--black);
-      --nav-link__color: var(--white);
-      --color-scheme-toggle__border-color: var(--white);
-      --color-scheme-toggle__active__background-color: var(--black);
-      --link--focus__outline-color: var(--blue);
+  <div class="intro">
+    <h1>I’m a creative web developer.</h1>
+    <p>
+      From graphic designer to full-stack developer, I’ve been designing and
+      building the web for more than ten years. I love crafting fast,
+      accessible, and delightful user experiences.
+    </p>
+    <div class="links">
+      <Button label="About Me" href="/about" class="button--secondary" />
+      <Button label="Get in Touch" href="/contact" class="button--primary" />
+    </div>
+  </div>
+</BaseLayout>
 
-      @media (min-width: 1000px) {
-        --nav-link__color: var(--black);
-        --color-scheme-toggle__border-color: var(--black);
-        --color-scheme-toggle__active__background-color: var(--red);
-      }
+<style lang="scss">
+  /* Light Color Scheme (Default + Override) */
+  :root,
+  :root[data-color-scheme='light'] {
+    --button--primary__background-color: var(--red);
+    --button--primary__color: var(--white);
+    --heading__color: var(--red);
+    --body__background-color: var(--white);
+    --site-header__background-color: var(--red);
+    --menu-toggle__background-color: var(--red);
+    --menu-toggle--show__background-color: var(--black);
+    --nav-link__color: var(--white);
+    --color-scheme-toggle__border-color: var(--white);
+    --color-scheme-toggle__active__background-color: var(--black);
+    --link--focus__outline-color: var(--blue);
+
+    @media (min-width: 1000px) {
+      --nav-link__color: var(--black);
+      --color-scheme-toggle__border-color: var(--black);
+      --color-scheme-toggle__active__background-color: var(--red);
     }
+  }
 
-    /* Dark Color Scheme (System Preference) */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --button--primary__background-color: var(--white);
-        --button--primary__color: var(--black);
-        --heading__color: var(--white);
-        --body__background-color: var(--red);
-        --site-header__background-color: var(--white);
-        --menu-toggle__background-color: var(--black);
-        --menu-toggle--show__background-color: var(--red);
-        --nav-link__color: var(--red);
-        --color-scheme-toggle__border-color: var(--black);
-        --color-scheme-toggle__active__background-color: var(--red);
-
-        @media (min-width: 1000px) {
-          --nav-link__color: var(--white);
-          --color-scheme-toggle__border-color: transparent;
-          --color-scheme-toggle__active__background-color: var(--black);
-        }
-      }
-    }
-
-    /* Dark Color Scheme (Override) */
-    :root[data-color-scheme='dark'] {
+  /* Dark Color Scheme (System Preference) */
+  @media (prefers-color-scheme: dark) {
+    :root {
       --button--primary__background-color: var(--white);
       --button--primary__color: var(--black);
       --heading__color: var(--white);
@@ -67,32 +61,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         --color-scheme-toggle__active__background-color: var(--black);
       }
     }
+  }
 
-    .intro {
-      @media (min-width: 1000px) {
-        grid-column: 2 / 3;
-      }
+  /* Dark Color Scheme (Override) */
+  :root[data-color-scheme='dark'] {
+    --button--primary__background-color: var(--white);
+    --button--primary__color: var(--black);
+    --heading__color: var(--white);
+    --body__background-color: var(--red);
+    --site-header__background-color: var(--white);
+    --menu-toggle__background-color: var(--black);
+    --menu-toggle--show__background-color: var(--red);
+    --nav-link__color: var(--red);
+    --color-scheme-toggle__border-color: var(--black);
+    --color-scheme-toggle__active__background-color: var(--red);
+
+    @media (min-width: 1000px) {
+      --nav-link__color: var(--white);
+      --color-scheme-toggle__border-color: transparent;
+      --color-scheme-toggle__active__background-color: var(--black);
     }
-
-    p {
-      margin-bottom: 1.875rem;
-
-      @media (min-width: 390px) {
-        margin-bottom: 2.5rem;
-      }
-    }
-  </style>
-
-  <div class="intro">
-    <h1>I’m Tyler, a creative web developer.</h1>
-    <p>
-      From graphic designer to full-stack developer, I’ve been creating for the
-      web for more than ten years. I love creating fast, accessible, and
-      delightful user experiences.
-    </p>
-    <div class="links">
-      <a class="button button--secondary" href="/about">About Me</a>
-      <a class="button button--primary" href="/contact">Get in Touch</a>
-    </div>
-  </div>
-</BaseLayout>
+  }
+</style>

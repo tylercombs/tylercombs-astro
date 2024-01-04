@@ -79,10 +79,14 @@ const url = new URL(Astro.url.pathname, Astro.site);
     <!-- <ViewTransitions /> -->
   </head>
   <body>
-    <Header />
-    <main id="main">
-      <slot />
-    </main>
-    <Footer />
+    <div class="grid-container">
+      <div class="grid">
+        <Header />
+        <main id="main">
+          <slot />
+        </main>
+        <Footer />
+      </div>
+    </div>
   </body>
 </html>
