@@ -1,0 +1,146 @@
+---
+import Icon from './Icon.astro';
+---
+
+<div class="themeSwitch__container">
+  <fieldset id="themeSwitch" aria-label="Theme Switch" role="radiogroup">
+    <label>
+      <input type="radio" id="system" name="theme" value="system" checked />
+      <span class="visually-hidden">System Mode</span>
+      <span class="icon">
+        <Icon src="system" fill="currentColor" />
+      </span>
+    </label>
+    <label>
+      <input type="radio" id="light" name="theme" value="light" />
+      <span class="visually-hidden">Light Mode</span>
+      <span class="icon">
+        <Icon src="light" fill="currentColor" />
+      </span>
+    </label>
+    <label>
+      <input type="radio" id="dark" name="theme" value="dark" />
+      <span class="visually-hidden">Dark Mode</span>
+      <span class="icon">
+        <Icon src="dark" fill="currentColor" />
+      </span>
+    </label>
+  </fieldset>
+</div>
+
+<style lang="scss">
+  @use '../styles/_mixins.scss' as *;
+  @use '../styles/_variables.scss' as *;
+
+  .themeSwitch__container {
+    border: 2px solid var(--theme-switch__border-color);
+    border-radius: 999rem;
+    padding: 2px;
+  }
+
+  #themeSwitch {
+    border: 0;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+    &::before {
+      content: '';
+      background-color: var(--theme-switch__background-color--active);
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: calc(100% / 3);
+    }
+
+    &.transition::before {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &:has(#system:checked)::before {
+      transform: translateX(0);
+    }
+
+    &:has(#light:checked)::before {
+      transform: translateX(100%);
+    }
+
+    &:has(#dark:checked)::before {
+      transform: translateX(200%);
+    }
+
+    input {
+      @include visually-hidden;
+
+      &:checked ~ .icon {
+        color: var(--theme-switch__icon-color--active);
+      }
+    }
+
+    &.transition input:checked ~ .icon {
+      transition: color 0.3s ease-in-out;
+    }
+
+    label {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      z-index: 100;
+
+      &[for='system'],
+      &[for='light'],
+      &[for='dark'] {
+        .icon {
+          color: var(--theme-switch__icon-color);
+        }
+      }
+
+      .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+</style>
+
+<script>
+  // Theme Switch.
+  const setTheme = (theme: string) => {
+    if (theme) {
+      // Update data-theme attr on html.
+      document.documentElement.setAttribute('data-theme', theme);
+      // Persist in local storage.
+      window.localStorage.setItem('theme', theme);
+      // Set radio state.
+      const radio = document.getElementById(theme) as HTMLInputElement;
+      if (radio) {
+        radio.checked = true;
+      }
+    }
+  };
+
+  // Set switch state based on html data attr.
+  const theme = document.documentElement.dataset.theme;
+  const radio = document.getElementById(
+    theme ? theme : 'system'
+  ) as HTMLInputElement;
+  if (radio) {
+    radio.checked = true;
+  }
+
+  // Add event listeners for theme switches.
+  document.querySelectorAll('#themeSwitch input').forEach((element) =>
+    element.addEventListener('change', (event) => {
+      event.preventDefault();
+      // Add transition class to theme switch.
+      document.getElementById('themeSwitch')?.classList.add('transition');
+      // Set theme on change.
+      setTheme((event.target as HTMLInputElement).value);
+    })
+  );
+</script>
