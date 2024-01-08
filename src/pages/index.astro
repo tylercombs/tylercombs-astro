@@ -19,9 +19,11 @@ import Button from '../components/Button.astro';
 </BaseLayout>
 
 <style lang="scss">
-  /* Light Color Scheme (Default + Override) */
+  @use '../styles/_variables.scss' as *;
+
+  /* Light Theme (Default + Override) */
   :root,
-  :root[data-color-scheme='light'] {
+  :root[data-theme='light'] {
     --button--primary__background-color: var(--red);
     --button--primary__color: var(--white);
     --heading__color: var(--red);
@@ -30,18 +32,19 @@ import Button from '../components/Button.astro';
     --menu-toggle__background-color: var(--red);
     --menu-toggle--show__background-color: var(--black);
     --nav-link__color: var(--white);
-    --color-scheme-toggle__border-color: var(--white);
-    --color-scheme-toggle__active__background-color: var(--black);
+    --theme-switch__border-color: var(--black);
+    --theme-switch__background-color--active: var(--white);
+    --theme-switch__icon-color--active: var(--black);
     --link--focus__outline-color: var(--blue);
 
-    @media (min-width: 1000px) {
+    @media screen and (min-width: $mobile-breakpoint) {
       --nav-link__color: var(--black);
-      --color-scheme-toggle__border-color: var(--black);
-      --color-scheme-toggle__active__background-color: var(--red);
+      --theme-switch__background-color--active: var(--red);
+      --theme-switch__icon-color--active: var(--white);
     }
   }
 
-  /* Dark Color Scheme (System Preference) */
+  /* Dark Theme (System Preference) */
   @media (prefers-color-scheme: dark) {
     :root {
       --button--primary__background-color: var(--white);
@@ -51,20 +54,19 @@ import Button from '../components/Button.astro';
       --site-header__background-color: var(--white);
       --menu-toggle__background-color: var(--black);
       --menu-toggle--show__background-color: var(--red);
-      --nav-link__color: var(--red);
-      --color-scheme-toggle__border-color: var(--black);
-      --color-scheme-toggle__active__background-color: var(--red);
+      --nav-link__color: var(--black);
+      --theme-switch__background-color--active: var(--red);
+      --theme-switch__icon-color--active: var(--white);
 
-      @media (min-width: 1000px) {
-        --nav-link__color: var(--white);
-        --color-scheme-toggle__border-color: transparent;
-        --color-scheme-toggle__active__background-color: var(--black);
+      @media screen and (min-width: $mobile-breakpoint) {
+        --theme-switch__background-color--active: var(--white);
+        --theme-switch__icon-color--active: var(--black);
       }
     }
   }
 
-  /* Dark Color Scheme (Override) */
-  :root[data-color-scheme='dark'] {
+  /* Dark Theme (Override) */
+  :root[data-theme='dark'] {
     --button--primary__background-color: var(--white);
     --button--primary__color: var(--black);
     --heading__color: var(--white);
@@ -72,14 +74,13 @@ import Button from '../components/Button.astro';
     --site-header__background-color: var(--white);
     --menu-toggle__background-color: var(--black);
     --menu-toggle--show__background-color: var(--red);
-    --nav-link__color: var(--red);
-    --color-scheme-toggle__border-color: var(--black);
-    --color-scheme-toggle__active__background-color: var(--red);
+    --nav-link__color: var(--black);
+    --theme-switch__background-color--active: var(--red);
+    --theme-switch__icon-color--active: var(--white);
 
-    @media (min-width: 1000px) {
-      --nav-link__color: var(--white);
-      --color-scheme-toggle__border-color: transparent;
-      --color-scheme-toggle__active__background-color: var(--black);
+    @media screen and (min-width: $mobile-breakpoint) {
+      --theme-switch__background-color--active: var(--white);
+      --theme-switch__icon-color--active: var(--black);
     }
   }
 </style>

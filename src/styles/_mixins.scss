@@ -1,10 +1,10 @@
 @use 'sass:map';
 
 @mixin visually-hidden {
-  border: 0;
+  border-width: 0;
   clip: rect(0 0 0 0);
-  height: auto;
-  margin: 0;
+  height: 1px;
+  margin: -1px;
   overflow: hidden;
   padding: 0;
   position: absolute;
@@ -15,7 +15,7 @@
 @mixin font-size($size) {
   $font-sizes: (
     'xs': var(--font-size-xs),
-    'sm': var(--font-size-ms),
+    'sm': var(--font-size-sm),
     'md': var(--font-size-md),
     'lg': var(--font-size-lg),
     'xl': var(--font-size-xl),

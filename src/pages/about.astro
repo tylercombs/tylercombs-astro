@@ -4,9 +4,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="About Me - Tyler Combs">
   <style lang="scss">
-    /* Light Color Scheme (Default + Override) */
+    @use '../styles/_variables.scss' as *;
+
+    /* Light Theme (Default + Override) */
     :root,
-    :root[data-color-scheme='light'] {
+    :root[data-color-theme='light'] {
       --button--primary__background-color: var(--red);
       --button--primary__color: var(--white);
       --heading__color: var(--blue);
@@ -15,18 +17,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       --menu-toggle__background-color: var(--blue);
       --menu-toggle--show__background-color: var(--black);
       --nav-link__color: var(--white);
-      --color-scheme-toggle__border-color: transparent;
-      --color-scheme-toggle__active__background-color: var(--black);
+      --theme-switch__border-color: transparent;
+      --theme-switch__background-color--active: var(--black);
       --link--focus__outline-color: var(--red);
 
-      @media (min-width: 1000px) {
+      @media screen and (min-width: $mobile-breakpoint) {
         --nav-link__color: var(--black);
-        --color-scheme-toggle__border-color: var(--black);
-        --color-scheme-toggle__active__background-color: var(--blue);
+        --theme-switch__border-color: var(--black);
+        --theme-switch__background-color--active: var(--blue);
       }
     }
 
-    /* Dark Color Scheme (System Preference) */
+    /* Dark Theme (System Preference) */
     @media (prefers-color-scheme: dark) {
       :root {
         --button--primary__background-color: var(--white);
@@ -37,19 +39,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         --menu-toggle__background-color: var(--black);
         --menu-toggle--show__background-color: var(--blue);
         --nav-link__color: var(--blue);
-        --color-scheme-toggle__border-color: var(--black);
-        --color-scheme-toggle__active__background-color: var(--blue);
+        --theme-switch__border-color: var(--black);
+        --theme-switch__background-color--active: var(--blue);
 
-        @media (min-width: 1000px) {
+        @media screen and (min-width: $mobile-breakpoint) {
           --nav-link__color: var(--white);
-          --color-scheme-toggle__border-color: transparent;
-          --color-scheme-toggle__active__background-color: var(--black);
+          --theme-switch__border-color: transparent;
+          --theme-switch__background-color--active: var(--black);
         }
       }
     }
 
-    /* Dark Color Scheme (Override) */
-    :root[data-color-scheme='dark'] {
+    /* Dark Theme (Override) */
+    :root[data-theme='dark'] {
       --button--primary__background-color: var(--white);
       --button--primary__color: var(--black);
       --heading__color: var(--white);
@@ -58,18 +60,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       --menu-toggle__background-color: var(--black);
       --menu-toggle--show__background-color: var(--blue);
       --nav-link__color: var(--blue);
-      --color-scheme-toggle__border-color: var(--black);
-      --color-scheme-toggle__active__background-color: var(--blue);
+      --theme-switch__border-color: var(--black);
+      --theme-switch__background-color--active: var(--blue);
 
-      @media (min-width: 1000px) {
+      @media screen and (min-width: $mobile-breakpoint) {
         --nav-link__color: var(--white);
-        --color-scheme-toggle__border-color: transparent;
-        --color-scheme-toggle__active__background-color: var(--black);
+        --theme-switch__border-color: transparent;
+        --theme-switch__background-color--active: var(--black);
       }
     }
 
     .intro {
-      @media (min-width: 1000px) {
+      @media screen and (min-width: $mobile-breakpoint) {
         grid-column: 1 / 2;
       }
     }
@@ -135,7 +137,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             column-gap: 0.5em;
           }
 
-          @media (min-width: 1000px) {
+          @media screen and (min-width: $mobile-breakpoint) {
             flex-wrap: wrap;
           }
 
@@ -148,7 +150,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               }
             }
 
-            @media (min-width: 1000px) {
+            @media screen and (min-width: $mobile-breakpoint) {
               &:first-of-type {
                 width: 100%;
               }

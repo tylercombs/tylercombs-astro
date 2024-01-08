@@ -42,11 +42,11 @@
   /* 12px -> 15px */
   --space-xs: clamp(0.75rem, 0.7056rem + 0.2219vw, 0.9375rem);
   /* 16px -> 20px */
-  --space-s: clamp(1rem, 0.9408rem + 0.2959vw, 1.25rem);
+  --space-sm: clamp(1rem, 0.9408rem + 0.2959vw, 1.25rem);
   /* 20px -> 30px */
-  --space-m: clamp(1.5rem, 1.4112rem + 0.4438vw, 1.875rem);
+  --space-md: clamp(1.5rem, 1.4112rem + 0.4438vw, 1.875rem);
   /* 32px -> 40px */
-  --space-l: clamp(2rem, 1.8817rem + 0.5917vw, 2.5rem);
+  --space-lg: clamp(2rem, 1.8817rem + 0.5917vw, 2.5rem);
   /* 48px -> 60px */
   --space-xl: clamp(3rem, 2.8225rem + 0.8876vw, 3.75rem);
   /* 64px -> 80px */
@@ -57,13 +57,13 @@
   /* One-up pairs */
   --space-3xs-2xs: clamp(0.25rem, 0.1612rem + 0.4438vw, 0.625rem);
   --space-2xs-xs: clamp(0.5rem, 0.3964rem + 0.5178vw, 0.9375rem);
-  --space-xs-s: clamp(0.75rem, 0.6317rem + 0.5917vw, 1.25rem);
-  --space-s-m: clamp(1rem, 0.7929rem + 1.0355vw, 1.875rem);
-  --space-m-l: clamp(1.5rem, 1.2633rem + 1.1834vw, 2.5rem);
-  --space-l-xl: clamp(2rem, 1.5858rem + 2.071vw, 3.75rem);
+  --space-xs-sm: clamp(0.75rem, 0.6317rem + 0.5917vw, 1.25rem);
+  --space-sm-md: clamp(1rem, 0.7929rem + 1.0355vw, 1.875rem);
+  --space-md-lg: clamp(1.5rem, 1.2633rem + 1.1834vw, 2.5rem);
+  --space-lg-xl: clamp(2rem, 1.5858rem + 2.071vw, 3.75rem);
   --space-xl-2xl: clamp(3rem, 2.5266rem + 2.3669vw, 5rem);
   --space-2xl-3xl: clamp(4rem, 3.1716rem + 4.142vw, 7.5rem); /* Custom pairs */
-  --space-s-l: clamp(1rem, 0.645rem + 1.7751vw, 2.5rem);
+  --space-sm-lg: clamp(1rem, 0.645rem + 1.7751vw, 2.5rem);
 
   /* Grid */
   /* @link https://utopia.fyi/grid/calculator?c=324,16,1.125,1760,20,1.2,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=m,2xl,xl,12 */
@@ -77,9 +77,9 @@
   --width-expanded: 'wdth' 125;
 }
 
-/* Light Color Scheme (Default + Override) */
+/* Light Theme (Default + Override) */
 :root,
-:root[data-color-scheme='light'] {
+:root[data-theme='light'] {
   --red-hsl: 12 100% 57%;
   --red: hsl(var(--red-hsl));
   --red-dark-hsl: 12, 100%, calc(57% - 5%);
@@ -95,29 +95,21 @@
 
   --button--secondary__color: var(--black);
   --button--secondary__border-color: var(--black);
-  --color-scheme-toggle__dark-color: var(--black);
-  --color-scheme-toggle__light-color: var(--white);
-  --color-scheme-toggle__clip-path: circle(27px at 27px);
+  --theme-switch__icon-color: var(--black);
 }
 
-/* Dark Color Scheme (System Preference) */
+/* Dark Theme (System Preference) */
 @media (prefers-color-scheme: dark) {
   :root {
     --button--secondary__color: var(--white);
     --button--secondary__border-color: var(--white);
-    --color-scheme-toggle__dark-color: var(--white);
-    --color-scheme-toggle__light-color: var(--black);
-    --color-scheme-toggle__clip-path: circle(27px at 74px 27px);
   }
 }
 
-/* Dark Color Scheme (Override) */
-:root[data-color-scheme='dark'] {
+/* Dark Theme (Override) */
+:root[data-theme='dark'] {
   --button--secondary__color: var(--white);
   --button--secondary__border-color: var(--white);
-  --color-scheme-toggle__dark-color: var(--white);
-  --color-scheme-toggle__light-color: var(--black);
-  --color-scheme-toggle__clip-path: circle(27px at 74px 27px);
 }
 
 @font-face {
@@ -140,6 +132,10 @@
   font-display: swap;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   background-color: var(--body__background-color);
   font-family: 'Archivo', sans-serif;
@@ -151,7 +147,6 @@ body {
 
 .grid-container {
   max-width: var(--grid-max-width);
-  padding-inline: var(--grid-gutter);
   margin-inline: auto;
   width: 100%;
 }
@@ -165,12 +160,13 @@ body {
 main {
   display: flex;
   justify-content: center;
+  padding-inline: var(--grid-gutter);
 }
 
 .intro {
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
+  gap: var(--space-md);
   max-width: 80ch;
   text-align: center;
 
@@ -181,7 +177,7 @@ main {
   .links {
     display: flex;
     flex-direction: column;
-    gap: var(--space-s);
+    gap: var(--space-sm);
     justify-content: center;
 
     @media screen and (min-width: 36rem) {
