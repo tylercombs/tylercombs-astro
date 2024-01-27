@@ -11,13 +11,13 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "astro": "^4.0.6",
+    "astro": "^4.2.6",
     "autoprefixer": "^10.4.0",
     "postcss-html": "^1.5.0",
     "postcss-preset-env": "^9.3.0",
     "sass": "^1.64.2"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.0.3"
+    "@astrojs/sitemap": "^3.0.5"
   }
 }
