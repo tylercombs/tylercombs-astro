@@ -1,86 +1,36 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
 ---
 
-<BaseLayout title="Tyler Combs - Creative Web Designer">
+<Layout title="Tyler Combs - Creative Web Designer">
   <div class="intro">
-    <h1>I’m a creative web developer.</h1>
+    <h1>Creative Web Developer.</h1>
     <p>
-      From graphic designer to full-stack developer, I’ve been designing and
-      building the web for more than ten years. I love crafting fast,
-      accessible, and delightful user experiences.
+      I'm a full-stack developer with over ten years of experience in marketing,
+      advertising, engineering, and design. With a broad set of skills, I craft
+      effective, performant, accessible, and delightful user experiences.
     </p>
     <div class="links">
       <Button label="About Me" href="/about" class="button--secondary" />
       <Button label="Get in Touch" href="/contact" class="button--primary" />
     </div>
   </div>
-</BaseLayout>
+</Layout>
 
 <style lang="scss">
   @use '../styles/_variables.scss' as *;
 
-  /* Light Theme (Default + Override) */
-  :root,
-  :root[data-theme='light'] {
-    --button--primary__background-color: var(--red);
-    --button--primary__color: var(--white);
-    --heading__color: var(--red);
-    --body__background-color: var(--white);
-    --site-header__background-color: var(--red);
-    --menu-toggle__background-color: var(--red);
-    --menu-toggle--show__background-color: var(--black);
-    --nav-link__color: var(--white);
-    --theme-switch__border-color: var(--black);
-    --theme-switch__background-color--active: var(--white);
-    --theme-switch__icon-color--active: var(--black);
-    --link--focus__outline-color: var(--blue);
-
-    @media screen and (min-width: $mobile-breakpoint) {
-      --nav-link__color: var(--black);
-      --theme-switch__background-color--active: var(--red);
-      --theme-switch__icon-color--active: var(--white);
-    }
-  }
-
-  /* Dark Theme (System Preference) */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --button--primary__background-color: var(--white);
-      --button--primary__color: var(--black);
-      --heading__color: var(--white);
-      --body__background-color: var(--red);
-      --site-header__background-color: var(--white);
-      --menu-toggle__background-color: var(--black);
-      --menu-toggle--show__background-color: var(--red);
-      --nav-link__color: var(--black);
-      --theme-switch__background-color--active: var(--red);
-      --theme-switch__icon-color--active: var(--white);
-
-      @media screen and (min-width: $mobile-breakpoint) {
-        --theme-switch__background-color--active: var(--white);
-        --theme-switch__icon-color--active: var(--black);
-      }
-    }
-  }
-
-  /* Dark Theme (Override) */
-  :root[data-theme='dark'] {
-    --button--primary__background-color: var(--white);
-    --button--primary__color: var(--black);
-    --heading__color: var(--white);
-    --body__background-color: var(--red);
-    --site-header__background-color: var(--white);
-    --menu-toggle__background-color: var(--black);
-    --menu-toggle--show__background-color: var(--red);
-    --nav-link__color: var(--black);
-    --theme-switch__background-color--active: var(--red);
-    --theme-switch__icon-color--active: var(--white);
-
-    @media screen and (min-width: $mobile-breakpoint) {
-      --theme-switch__background-color--active: var(--white);
-      --theme-switch__icon-color--active: var(--black);
-    }
+  :root {
+    --color-accent-50: var(--red-50);
+    --color-accent-100: var(--red-100);
+    --color-accent-200: var(--red-200);
+    --color-accent-300: var(--red-300);
+    --color-accent-400: var(--red-400);
+    --color-accent-500: var(--red-500);
+    --color-accent-600: var(--red-600);
+    --color-accent-700: var(--red-700);
+    --color-accent-800: var(--red-800);
+    --color-accent-900: var(--red-900);
   }
 </style>

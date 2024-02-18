@@ -1,25 +1,34 @@
 @use 'reset';
 @use 'mixins' as *;
+@use 'variables' as *;
 
 :root {
   /* Type Scale. */
   /* @link https://utopia.fyi/type/calculator?c=320,16,1.125,1672,20,1.2,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=m,2xl,l,12 */
   /* 12.64px -> 13.89px */
   --font-size-xs: clamp(0.79rem, 0.7715rem + 0.0925vw, 0.8681rem);
+
   /* 14.22px -> 16.67px */
   --font-size-sm: clamp(0.8888rem, 0.8525rem + 0.1812vw, 1.0419rem);
+
   /* 16px -> 20px */
   --font-size-md: clamp(1rem, 0.9408rem + 0.2959vw, 1.25rem);
+
   /* 18px -> 24px */
   --font-size-lg: clamp(1.125rem, 1.0362rem + 0.4438vw, 1.5rem);
+
   /* 20.25px -> 28.8px */
   --font-size-xl: clamp(1.2656rem, 1.1391rem + 0.6324vw, 1.8rem);
+
   /* 22.78px -> 34.56px */
   --font-size-2xl: clamp(1.4238rem, 1.2495rem + 0.8713vw, 2.16rem);
+
   /* 25.63px -> 41.47px */
   --font-size-3xl: clamp(1.6019rem, 1.3676rem + 1.1716vw, 2.5919rem);
+
   /* 28.83px -> 49.77px */
   --font-size-4xl: clamp(1.8019rem, 1.4921rem + 1.5488vw, 3.1106rem);
+
   /* 32.44px -> 59.72px */
   --font-size-5xl: clamp(2.0275rem, 1.6239rem + 2.0178vw, 3.7325rem);
 
@@ -35,40 +44,72 @@
 
   /* Spacing Scale. */
   /* @link https://utopia.fyi/space/calculator?c=320,16,1.125,1672,20,1.2,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=m,2xl,l,12 */
-  /* 4px -> 5px */
+  /* Space 3xs: 4px → 5px */
   --space-3xs: clamp(0.25rem, 0.2352rem + 0.074vw, 0.3125rem);
-  /* 8px -> 10px */
+
+  /* Space 2xs: 8px → 10px */
   --space-2xs: clamp(0.5rem, 0.4704rem + 0.1479vw, 0.625rem);
-  /* 12px -> 15px */
+
+  /* Space xs: 12px → 15px */
   --space-xs: clamp(0.75rem, 0.7056rem + 0.2219vw, 0.9375rem);
-  /* 16px -> 20px */
+
+  /* Space sm: 16px → 20px */
   --space-sm: clamp(1rem, 0.9408rem + 0.2959vw, 1.25rem);
-  /* 20px -> 30px */
+
+  /* Space md: 24px → 30px */
   --space-md: clamp(1.5rem, 1.4112rem + 0.4438vw, 1.875rem);
-  /* 32px -> 40px */
+
+  /* Space lg: 32px → 40px */
   --space-lg: clamp(2rem, 1.8817rem + 0.5917vw, 2.5rem);
-  /* 48px -> 60px */
+
+  /* Space xl: 48px → 60px */
   --space-xl: clamp(3rem, 2.8225rem + 0.8876vw, 3.75rem);
-  /* 64px -> 80px */
+
+  /* Space 2xl: 64px → 80px */
   --space-2xl: clamp(4rem, 3.7633rem + 1.1834vw, 5rem);
-  /* 96px -> 120px */
+
+  /* Space 3xl: 96px → 120px */
   --space-3xl: clamp(6rem, 5.645rem + 1.7751vw, 7.5rem);
 
   /* One-up pairs */
+  /* Space 3xs-2xs: 4px → 10px */
   --space-3xs-2xs: clamp(0.25rem, 0.1612rem + 0.4438vw, 0.625rem);
+
+  /* Space 2xs-xs: 8px → 15px */
   --space-2xs-xs: clamp(0.5rem, 0.3964rem + 0.5178vw, 0.9375rem);
+
+  /* Space xs-sm: 12px → 20px */
   --space-xs-sm: clamp(0.75rem, 0.6317rem + 0.5917vw, 1.25rem);
+
+  /* Space sm-md: 16px → 30px */
   --space-sm-md: clamp(1rem, 0.7929rem + 1.0355vw, 1.875rem);
+
+  /* Space md-lg: 24px → 40px */
   --space-md-lg: clamp(1.5rem, 1.2633rem + 1.1834vw, 2.5rem);
+
+  /* Space lg-xl: 32px → 60px */
   --space-lg-xl: clamp(2rem, 1.5858rem + 2.071vw, 3.75rem);
+
+  /* Space xl-2xl: 48px → 80px */
   --space-xl-2xl: clamp(3rem, 2.5266rem + 2.3669vw, 5rem);
-  --space-2xl-3xl: clamp(4rem, 3.1716rem + 4.142vw, 7.5rem); /* Custom pairs */
+
+  /* Space 2xl-3xl: 64px → 120px */
+  --space-2xl-3xl: clamp(4rem, 3.1716rem + 4.142vw, 7.5rem);
+
+  /* Custom pairs */
+  /* Space sm-lg: 16px → 40px */
   --space-sm-lg: clamp(1rem, 0.645rem + 1.7751vw, 2.5rem);
+
+  /* Space md-2xl: 24px → 80px */
+  --space-md-2xl: clamp(1.5rem, 0.6716rem + 4.142vw, 5rem);
+
+  /* Space lg-3xl: 32px → 120px */
+  --space-lg-3xl: clamp(2rem, 0.6982rem + 6.5089vw, 7.5rem);
 
   /* Grid */
   /* @link https://utopia.fyi/grid/calculator?c=324,16,1.125,1760,20,1.2,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=m,2xl,xl,12 */
   --grid-max-width: 110rem;
-  --grid-gutter: var(--space-m-2xl, clamp(1.5rem, 0.7103rem + 3.8997vw, 5rem));
+  --grid-gutter: var(--space-md-2xl);
   --grid-columns: 12;
 
   /* Variable Font Width */
@@ -77,39 +118,163 @@
   --width-expanded: 'wdth' 125;
 }
 
-/* Light Theme (Default + Override) */
+/* Colors. */
+:root {
+  --red-50: oklch(97.05% 0.015 33.07); // #fff2ef
+  --red-100: oklch(89.32% 0.057 33.11); // #ffcfc4
+  --red-200: oklch(81.64% 0.105 33.18); // #ffaa97
+  --red-300: oklch(73.95% 0.16 33.33); // #ff8065
+  --red-400: oklch(66.13% 0.21 33.05); // #f8502f
+  --red-500: oklch(58.49% 0.214 33.07); // #de2f03
+  --red-600: oklch(51% 0.187 33.14); // #b92500
+  --red-700: oklch(40.84% 0.151 32.97); // #891800
+  --red-800: oklch(30.38% 0.111 33.27); // #5a0d00
+  --red-900: oklch(21.05% 0.078 32.85); // #340400
+
+  --blue-50: oklch(96.9% 0.015 247.99); // #edf6ff
+  --blue-100: oklch(88.89% 0.058 246.1); // #bcdfff
+  --blue-200: oklch(80.6% 0.103 247.16); // #88c6ff
+  --blue-300: oklch(72.32% 0.136 247.28); // #57acf6
+  --blue-400: oklch(64.08% 0.136 247.11); // #3b92da
+  --blue-500: oklch(55.99% 0.14 247.02); // #1479c1
+  --blue-600: oklch(48.99% 0.13 247.23); // #0064a5
+  --blue-700: oklch(39.5% 0.105 247.41); // #00497b
+  --blue-800: oklch(29.73% 0.079 247.37); // #002f52
+  --blue-900: oklch(21.14% 0.055 246.37); // #001a30
+
+  --yellow-50: oklch(96.95% 0.044 93.09); // #fff5d4
+  --yellow-100: oklch(88.84% 0.111 93.28); // #f3d982
+  --yellow-200: oklch(80.58% 0.11 92.96); // #d8be68
+  --yellow-300: oklch(72.34% 0.11 93.28); // #bda44e
+  --yellow-400: oklch(64.19% 0.11 93.81); // #a38b32
+  --yellow-500: oklch(55.98% 0.114 93.41); // #8b7202
+  --yellow-600: oklch(48.96% 0.1 92.9); // #745e00
+  --yellow-700: oklch(39.56% 0.081 93.81); // #554500
+  --yellow-800: oklch(29.8% 0.061 92.63); // #382c00
+  --yellow-900: oklch(21.13% 0.043 94.54); // #1f1800
+
+  --black: oklch(0% 0 0); // #000
+  --white: oklch(99.47% 0.0045 78.2986); // #FFFDFA
+}
+
+/* Light Theme */
+@mixin theme-light() {
+  color-scheme: light;
+
+  --color-body-background: var(--white);
+
+  --color-button-background-primary: transparent;
+  --color-button-border-primary: var(--black);
+  --color-button-shadow-background-primary: var(--color-accent-500);
+  --color-button-text-primary: var(--black);
+
+  --color-button-background-secondary: transparent;
+  --color-button-border-secondary: var(--black);
+  --color-button-shadow-background-secondary: var(--color-accent-100);
+  --color-button-text-secondary: var(--black);
+
+  --color-header-background: var(--color-accent-500);
+
+  --color-heading: var(--color-accent-500);
+
+  --color-input-border: var(--color-accent-500);
+
+  --color-logo-text: var(--black);
+
+  --color-menu-toggle-background: transparent;
+  --color-menu-toggle-background-show: var(--black);
+  --color-menu-toggle-border: var(--black);
+  --color-menu-toggle-icon: var(--black);
+  --color-menu-toggle-shadow-background: var(--color-accent-500);
+
+  --color-nav-link-indicator: var(--color-accent-500);
+  --color-nav-link-text: var(--black);
+
+  --color-text: var(--black);
+
+  --color-theme-switch-background: var(--color-accent-100);
+  --color-theme-switch-background-active: var(--black);
+  --color-theme-switch-border: var(--black);
+  --color-theme-switch-icon: var(--black);
+  --color-theme-switch-icon-active: var(--color-accent-100);
+
+  @media screen and (max-width: $mobile-breakpoint - 1px) {
+    --color-menu-toggle-background-show: var(--black);
+    --color-menu-toggle-icon-show: var(--white);
+    --color-menu-toggle-shadow-background-show: var(--white);
+
+    --color-nav-link-indicator: var(--white);
+
+    --color-theme-switch-background: var(--white);
+    --color-theme-switch-background-active: var(--black);
+    --color-theme-switch-icon-active: var(--white);
+  }
+}
+
+/* Dark Theme */
+@mixin theme-dark() {
+  color-scheme: dark;
+
+  --color-body-background: var(--color-accent-500);
+
+  --color-button-background-primary: var(--black);
+  --color-button-border-primary: var(--black);
+  --color-button-shadow-background-primary: var(--white);
+  --color-button-text-primary: var(--white);
+
+  --color-button-background-secondary: transparent;
+  --color-button-border-secondary: var(--black);
+  --color-button-shadow-background-secondary: var(--white);
+  --color-button-text-secondary: var(--black);
+
+  --color-header-background: var(--white);
+
+  --color-heading: var(--white);
+
+  --color-input-border: var(--black);
+
+  --color-menu-toggle-background: var(--black);
+  --color-menu-toggle-background-show: var(--black);
+  --color-menu-toggle-border: var(--black);
+  --color-menu-toggle-icon: var(--white);
+  --color-menu-toggle-shadow-background: var(--white);
+
+  --color-nav-link-indicator: var(--white);
+  --color-nav-link-shadow: var(--white);
+
+  --color-theme-switch-background: var(--white);
+  --color-theme-switch-background-active: var(--black);
+  --color-theme-switch-icon-active: var(--white);
+
+  @media screen and (max-width: $mobile-breakpoint - 1px) {
+    --color-menu-toggle-background-show: transparent;
+    --color-menu-toggle-icon-show: var(--black);
+    --color-menu-toggle-shadow-background-show: var(--color-accent-500);
+
+    --color-nav-link-indicator: var(--color-accent-500);
+
+    --color-theme-switch-background: var(--color-accent-100);
+    --color-theme-switch-background-active: var(--black);
+    --color-theme-switch-icon-active: var(--color-accent-100);
+  }
+}
+
+/* Light Theme */
 :root,
 :root[data-theme='light'] {
-  --red-hsl: 12 100% 57%;
-  --red: hsl(var(--red-hsl));
-  --red-dark-hsl: 12, 100%, calc(57% - 5%);
-  --red-dark: hsl(var(--red-dark-hsl));
-  --blue-hsl: 204, 56%, 44%;
-  --blue: hsl(var(--blue-hsl));
-  --yellow-hsl: 49, 100%, 33%;
-  --yellow: hsl(var(--yellow-hsl));
-  --black-hsl: 120, 100%, 8%;
-  --black: hsl(var(--black-hsl));
-  --white-hsl: 36, 100%, 96%;
-  --white: hsl(var(--white-hsl));
+  @include theme-light();
+}
 
-  --button--secondary__color: var(--black);
-  --button--secondary__border-color: var(--black);
-  --theme-switch__icon-color: var(--black);
+/* Dark Theme */
+:root[data-theme='dark'] {
+  @include theme-dark();
 }
 
 /* Dark Theme (System Preference) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --button--secondary__color: var(--white);
-    --button--secondary__border-color: var(--white);
+    @include theme-dark();
   }
-}
-
-/* Dark Theme (Override) */
-:root[data-theme='dark'] {
-  --button--secondary__color: var(--white);
-  --button--secondary__border-color: var(--white);
 }
 
 @font-face {
@@ -137,33 +302,41 @@ html {
 }
 
 body {
-  background-color: var(--body__background-color);
+  background-color: var(--color-body-background);
+  color: var(--color-text);
   font-family: 'Archivo', sans-serif;
   @include font-size('md');
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+  position: relative;
 }
 
 .grid-container {
+  height: 100dvh;
   max-width: var(--grid-max-width);
   margin-inline: auto;
+  min-height: 100%;
   width: 100%;
 }
 
 .grid {
   display: grid;
   column-gap: var(--grid-gutter);
-  row-gap: var(--space-xl);
+  min-height: 100%;
+  row-gap: var(--space-lg-3xl);
+  grid-template-rows: auto 1fr auto;
 }
 
 main {
+  align-items: center;
   display: flex;
+  flex-direction: column;
+  gap: var(--space-lg-3xl);
   justify-content: center;
   padding-inline: var(--grid-gutter);
 }
 
 .intro {
+  align-items: center;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -172,6 +345,8 @@ main {
 
   p {
     @include font-size('lg');
+    max-width: 60ch;
+    text-wrap: pretty;
   }
 
   .links {
@@ -191,7 +366,7 @@ main {
 }
 
 h1 {
-  color: var(--heading__color);
+  color: var(--color-heading);
   @include font-size('5xl');
   font-weight: 800;
   font-variation-settings: var(--width-semi-expanded);

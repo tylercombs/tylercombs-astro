@@ -1,6 +1,4 @@
 ---
-import Icon from './Icon.astro';
-
 type Props = {
   label: string;
   class?: string;
@@ -16,7 +14,7 @@ const {
   href = '',
   arrow = true,
   icon = '',
-  iconPosition = 'end',
+  iconPosition = 'start',
   buttonType = 'button',
 } = Astro.props;
 const Element = href ? 'a' : 'button';
@@ -26,33 +24,65 @@ const buttonAttrs = {
 ---
 
 <Element class:list={['button', className]} href={href} {...buttonAttrs}>
-  {icon && iconPosition === 'start' && <Icon src={icon} />}
+  {
+    icon && iconPosition === 'start' && (
+      <span class="icon">
+        <slot name="icon" />
+      </span>
+    )
+  }
   {label}
-  {icon && iconPosition === 'end' && <Icon src={icon} />}
+  {
+    icon && iconPosition === 'end' && (
+      <span class="icon">
+        <slot name="icon" />
+      </span>
+    )
+  }
   {
     arrow && (
-      <span class="icon">
-        <Icon src="arrow" />
-      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5">
+        <path d="m13 5 7 7-7 7" />
+        <path d="m20 12h-16" />
+      </svg>
     )
   }
 </Element>
 
-<style lang="scss">
-  @use '../styles/_mixins.scss' as *;
-
+<style>
   .button {
+    --background-color: var(--color-button-background-primary);
+    --border-color: var(--color-button-border-primary);
+    --border-width: 2px;
+    --border-radius: calc(
+      (
+          (1em * var(--line-height-lg)) + (2 * var(--space-2xs)) +
+            (2 * var(--border-width))
+        ) / 2
+    );
+    --color: var(--color-button-text-primary);
+    --shadow: var(--color-button-shadow-background-primary);
+
     align-items: center;
-    background-color: transparent;
-    border: none;
-    border-radius: 999rem;
+    background-color: var(--background-color);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--color);
+    cursor: pointer;
     display: flex;
-    @include font-size('lg');
+    font-size: var(--font-size-lg);
     font-variation-settings: var(--width-semi-expanded);
     font-weight: 800;
     gap: var(--space-xs);
     justify-content: center;
+    line-height: var(--line-height-lg);
     padding: var(--space-2xs) var(--space-md);
+    position: relative;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
@@ -62,21 +92,57 @@ const buttonAttrs = {
       width: auto;
     }
 
-    &.button--primary {
-      background-color: var(--button--primary__background-color);
-      border: 2px solid var(--button--primary__background-color);
-      color: var(--button--primary__color);
+    &::before {
+      background-color: var(--shadow);
+      border-radius: var(--border-radius);
+      content: '';
+      position: absolute;
+      inset: calc(var(--border-width) * -1);
+      z-index: -10;
+      transform: translate(4px, 4px);
+      transition:
+        opacity 0.4s ease-out,
+        transform 0.3s ease-out;
+    }
+
+    &:hover {
+      &::before {
+        transform: translate(1px, 1px);
+        transition:
+          opacity 0.05s ease-in,
+          transform 0.1s ease-in;
+      }
     }
 
     &.button--secondary {
-      border: 2px solid var(--button--secondary__border-color);
-      color: var(--button--secondary__color);
+      --background-color: var(--color-button-background-secondary);
+      --border-color: var(--color-button-border-secondary);
+      --color: var(--color-button-text-secondary);
+      --shadow: var(--color-button-shadow-background-secondary);
+
+      background-color: var(--background-color);
+      position: relative;
+
+      &::before {
+        opacity: 1;
+      }
     }
   }
 
-  .icon {
+  .icon svg {
     display: block;
     height: calc(1em * var(--line-height-lg));
     width: calc(1em * var(--line-height-lg));
+  }
+
+  .arrow {
+    .point {
+      transform: translateX(0.25rem);
+    }
+
+    .line {
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+    }
   }
 </style>

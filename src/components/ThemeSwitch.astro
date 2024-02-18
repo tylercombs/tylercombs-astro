@@ -7,23 +7,40 @@ import Icon from './Icon.astro';
     <label>
       <input type="radio" id="system" name="theme" value="system" checked />
       <span class="visually-hidden">System Mode</span>
-      <span class="icon">
-        <Icon src="system" fill="currentColor" />
-      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 24 24">
+        <path
+          clip-rule="evenodd"
+          d="m3 5.5c0-1.4 1.1-2.5 2.5-2.5h12.9c1.5 0 2.6 1.1 2.6 2.5v9.6c0 1.4-1.1 2.5-2.5 2.5h-3.5c.2.7.6 1.4 1.2 1.9.4.3.4.8.1 1.2-.2.2-.4.3-.6.3h-7.4c-.5 0-.8-.4-.8-.8 0-.2.1-.5.3-.6.6-.5 1-1.2 1.2-1.9h-3.5c-1.4 0-2.5-1.1-2.5-2.5zm1.7 0c0-.5.4-.8.8-.8h12.9c.5 0 .8.4.8.8v8.5c0 .5-.4.8-.8.8h-12.9c-.5 0-.8-.4-.8-.8z"
+          fill-rule="evenodd"></path>
+      </svg>
     </label>
     <label>
       <input type="radio" id="light" name="theme" value="light" />
       <span class="visually-hidden">Light Mode</span>
-      <span class="icon">
-        <Icon src="light" fill="currentColor" />
-      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 24 24">
+        <path
+          d="m12 3c.5 0 .8.4.8.8v1.7c0 .5-.4.8-.8.8-.5 0-.8-.4-.8-.8v-1.7c0-.4.3-.8.8-.8zm0 14.6c.5 0 .8.4.8.8v1.7c0 .5-.4.8-.8.8-.5 0-.8-.4-.8-.8v-1.7c0-.4.3-.8.8-.8zm0-9c-1.9 0-3.4 1.5-3.4 3.4s1.5 3.4 3.4 3.4 3.4-1.5 3.4-3.4-1.5-3.4-3.4-3.4zm6.4-1.8c.3-.3.4-.9 0-1.2-.3-.3-.9-.4-1.2 0l-1.2 1.2c-.3.3-.3.9 0 1.2s.8.3 1.2 0zm-10.4 10.4c.3-.3.4-.9 0-1.2-.3-.3-.9-.4-1.2 0l-1.2 1.2c-.3.3-.3.9 0 1.2s.8.3 1.2 0c0 0 1.2-1.2 1.2-1.2zm13-5.2c0 .5-.4.8-.8.8h-1.7c-.5 0-.8-.4-.8-.8s.4-.8.8-.8h1.7c.4 0 .8.3.8.8zm-14.6 0c0 .5-.4.8-.8.8h-1.8c-.4 0-.8-.3-.8-.8s.4-.8.8-.8h1.7c.5 0 .9.3.9.8zm10.8 6.4c.3.3.9.3 1.2 0s.3-.8 0-1.2l-1.2-1.2c-.3-.3-.9-.4-1.2 0-.3.3-.4.9 0 1.2zm-10.4-10.4c.4.3.9.3 1.2 0s.3-.8 0-1.2l-1.2-1.2c-.3-.3-.8-.3-1.2 0s-.3.9 0 1.2z"
+        ></path>
+      </svg>
     </label>
     <label>
       <input type="radio" id="dark" name="theme" value="dark" />
       <span class="visually-hidden">Dark Mode</span>
-      <span class="icon">
-        <Icon src="dark" fill="currentColor" />
-      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 24 24">
+        <path
+          clip-rule="evenodd"
+          d="m8.9 3.5c.2.2.3.5.2.8-1 4 1.4 8.1 5.4 9.1 1.8.5 3.6.2 5.3-.6.4-.2.9 0 1.1.4.1.2.1.4.1.6-1.2 4.9-6.2 7.8-11.1 6.6-4.9-1.3-7.9-6.2-6.6-11.1.6-2.6 2.3-4.7 4.7-5.9.3-.1.6-.1.9.1z"
+          fill-rule="evenodd"></path>
+      </svg>
     </label>
   </fieldset>
 </div>
@@ -33,9 +50,30 @@ import Icon from './Icon.astro';
   @use '../styles/_variables.scss' as *;
 
   .themeSwitch__container {
-    border: 2px solid var(--theme-switch__border-color);
-    border-radius: 999rem;
+    --border-radius: 999rem;
+    --border-width: 2px;
+    border: var(--border-width) solid var(--color-theme-switch-border);
+    border-radius: var(--border-radius);
     padding: 2px;
+    position: relative;
+
+    &::before {
+      content: '';
+      background-color: var(--color-theme-switch-background);
+      border-radius: var(--border-radius);
+      position: absolute;
+      inset: calc(var(--border-width) * -1);
+      transform: translate(2px, 2px);
+      transition: transform 0.3s ease-out;
+      z-index: -10;
+    }
+
+    &:hover {
+      &::before {
+        transform: translate(1px, 1px);
+        transition: transform 0.1s ease-in;
+      }
+    }
   }
 
   #themeSwitch {
@@ -47,7 +85,7 @@ import Icon from './Icon.astro';
 
     &::before {
       content: '';
-      background-color: var(--theme-switch__background-color--active);
+      background-color: var(--color-theme-switch-background-active);
       border-radius: 50%;
       position: absolute;
       top: 0;
@@ -75,7 +113,7 @@ import Icon from './Icon.astro';
       @include visually-hidden;
 
       &:checked ~ .icon {
-        color: var(--theme-switch__icon-color--active);
+        color: var(--color-theme-switch-icon-active);
       }
     }
 
@@ -90,17 +128,10 @@ import Icon from './Icon.astro';
       justify-content: center;
       width: 2.25rem;
       height: 2.25rem;
-      z-index: 100;
-
-      &[for='system'],
-      &[for='light'],
-      &[for='dark'] {
-        .icon {
-          color: var(--theme-switch__icon-color);
-        }
-      }
+      z-index: 10;
 
       .icon {
+        color: var(--color-theme-switch-icon);
         width: 1.5rem;
         height: 1.5rem;
       }
@@ -109,38 +140,40 @@ import Icon from './Icon.astro';
 </style>
 
 <script>
-  // Theme Switch.
-  const setTheme = (theme: string) => {
-    if (theme) {
-      // Update data-theme attr on html.
-      document.documentElement.setAttribute('data-theme', theme);
-      // Persist in local storage.
-      window.localStorage.setItem('theme', theme);
-      // Set radio state.
-      const radio = document.getElementById(theme) as HTMLInputElement;
-      if (radio) {
-        radio.checked = true;
+  document.addEventListener('astro:page-load', () => {
+    // Theme Switch.
+    const setTheme = (theme: string) => {
+      if (theme) {
+        // Update data-theme attr on html.
+        document.documentElement.setAttribute('data-theme', theme);
+        // Persist in local storage.
+        window.localStorage.setItem('theme', theme);
+        // Set radio state.
+        const radio = document.getElementById(theme) as HTMLInputElement;
+        if (radio) {
+          radio.checked = true;
+        }
       }
+    };
+
+    // Set switch state based on html data attr.
+    const theme = document.documentElement.dataset.theme;
+    const radio = document.getElementById(
+      theme ? theme : 'system'
+    ) as HTMLInputElement;
+    if (radio) {
+      radio.checked = true;
     }
-  };
 
-  // Set switch state based on html data attr.
-  const theme = document.documentElement.dataset.theme;
-  const radio = document.getElementById(
-    theme ? theme : 'system'
-  ) as HTMLInputElement;
-  if (radio) {
-    radio.checked = true;
-  }
-
-  // Add event listeners for theme switches.
-  document.querySelectorAll('#themeSwitch input').forEach((element) =>
-    element.addEventListener('change', (event) => {
-      event.preventDefault();
-      // Add transition class to theme switch.
-      document.getElementById('themeSwitch')?.classList.add('transition');
-      // Set theme on change.
-      setTheme((event.target as HTMLInputElement).value);
-    })
-  );
+    // Add event listeners for theme switches.
+    document.querySelectorAll('#themeSwitch input').forEach((element) =>
+      element.addEventListener('change', (event) => {
+        event.preventDefault();
+        // Add transition class to theme switch.
+        document.getElementById('themeSwitch')?.classList.add('transition');
+        // Set theme on change.
+        setTheme((event.target as HTMLInputElement).value);
+      })
+    );
+  });
 </script>
