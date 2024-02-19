@@ -1,13 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
+
+const description =
+  'Interested in working with me? Just want to say hello? Send me a message!';
 ---
 
-<Layout title="Contact Me - Tyler Combs">
+<Layout title="Contact Me - Tyler Combs" description={description}>
   <div class="intro">
     <h1>What can I do for you?</h1>
     <p>
-      Interested in working with me? Just want to say hello? Send me a message!
+      {description}
     </p>
   </div>
   <div class="content">
@@ -26,17 +29,12 @@ import Button from '../components/Button.astro';
         ></textarea>
       </div>
       <Button
-        label="Send"
+        icon="mail"
         buttonType="submit"
         arrow={false}
-        class="button--primary">
-        <svg slot="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-          ><path
-            d="m5 6c-1.1 0-2 .9-2 2v1.2l8.4 4.2c.4.2.8.2 1.1 0l8.5-4.2v-1.2c0-1.1-.9-2-2-2z"
-          ></path><path
-            d="m21 10.8-7.8 3.9c-.8.4-1.7.4-2.5 0l-7.7-3.9v5.2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2z"
-          ></path></svg
-        >
+        class="button--primary"
+      >
+        Send
       </Button>
     </form>
     <div id="thanks">Thank You!</div>

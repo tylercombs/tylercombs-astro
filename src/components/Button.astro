@@ -1,20 +1,21 @@
 ---
+import Icon from './Icon.astro';
+import type { Icons } from '../components/Icons';
+
 type Props = {
-  label: string;
   class?: string;
   href?: string;
   arrow?: boolean;
-  icon?: string;
+  icon?: keyof typeof Icons;
   iconPosition?: 'start' | 'end';
   buttonType?: 'submit' | 'button';
 };
+
 const {
-  label,
   class: className = '',
   href = '',
   arrow = true,
   icon = '',
-  iconPosition = 'start',
   buttonType = 'button',
 } = Astro.props;
 const Element = href ? 'a' : 'button';
@@ -24,37 +25,12 @@ const buttonAttrs = {
 ---
 
 <Element class:list={['button', className]} href={href} {...buttonAttrs}>
-  {
-    icon && iconPosition === 'start' && (
-      <span class="icon">
-        <slot name="icon" />
-      </span>
-    )
-  }
-  {label}
-  {
-    icon && iconPosition === 'end' && (
-      <span class="icon">
-        <slot name="icon" />
-      </span>
-    )
-  }
-  {
-    arrow && (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5">
-        <path d="m13 5 7 7-7 7" />
-        <path d="m20 12h-16" />
-      </svg>
-    )
-  }
+  {icon && <Icon name={icon} size="1.36em" />}
+  <slot />
+  {arrow && <Icon name="arrow-right" class="arrow" size="1.3em" />}
 </Element>
 
-<style>
+<style lang="scss">
   .button {
     --background-color: var(--color-button-background-primary);
     --border-color: var(--color-button-border-primary);
@@ -112,6 +88,10 @@ const buttonAttrs = {
           opacity 0.05s ease-in,
           transform 0.1s ease-in;
       }
+
+      .arrow {
+        animation: arrow-bounce 1s infinite;
+      }
     }
 
     &.button--secondary {
@@ -129,20 +109,15 @@ const buttonAttrs = {
     }
   }
 
-  .icon svg {
-    display: block;
-    height: calc(1em * var(--line-height-lg));
-    width: calc(1em * var(--line-height-lg));
-  }
-
-  .arrow {
-    .point {
-      transform: translateX(0.25rem);
+  @keyframes arrow-bounce {
+    0%,
+    100% {
+      transform: none;
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
     }
-
-    .line {
-      opacity: 0;
-      transition: opacity 0.3s ease-in;
+    50% {
+      transform: translateX(25%);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
     }
   }
 </style>

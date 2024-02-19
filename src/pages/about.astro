@@ -1,18 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
+
+const description =
+  'I’ve been designing and developing websites for more than ten years, with a passion for performance, accessibility, and usability. I’m currently a Software Engineer at Edge Delta, living in Oakland, CA.';
 ---
 
-<Layout title="About Me - Tyler Combs">
+<Layout title="About Me - Tyler Combs" description={description}>
   <div class="intro">
     <h1>A bit about me.</h1>
     <p>
-      I’ve been designing and developing websites for more than ten years, with
-      a passion for performance, accessibility, and usability. I’m currently a
-      Software Engineer at Edge Delta, living in Oakland, CA.
+      {description}
     </p>
     <div class="links">
-      <Button label="Get in Touch" href="/contact" class="button--primary" />
+      <Button href="/contact" class="button--primary">Get in Touch</Button>
     </div>
   </div>
   <div class="content">
