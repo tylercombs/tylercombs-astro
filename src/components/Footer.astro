@@ -2,11 +2,10 @@
 const year = new Date().getFullYear();
 ---
 
-<style lang="scss">
-  @use '../styles/_mixins.scss' as *;
-
+<style>
   .site-footer {
-    @include font-size('xs');
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
     padding: var(--space-md) var(--grid-gutter);
   }
 </style>

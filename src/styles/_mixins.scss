@@ -14,7 +14,6 @@
 
 @mixin font-size($size) {
   $font-sizes: (
-    'xs': var(--font-size-xs),
     'sm': var(--font-size-sm),
     'md': var(--font-size-md),
     'lg': var(--font-size-lg),
@@ -26,7 +25,6 @@
   );
 
   $line-heights: (
-    'xs': var(--line-height-xs),
     'sm': var(--line-height-sm),
     'md': var(--line-height-md),
     'lg': var(--line-height-lg),

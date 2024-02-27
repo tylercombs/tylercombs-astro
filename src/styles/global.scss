@@ -4,9 +4,7 @@
 
 :root {
   /* Type Scale. */
-  /* @link https://utopia.fyi/type/calculator?c=320,16,1.125,1672,20,1.2,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=m,2xl,l,12 */
-  /* 12.64px -> 13.89px */
-  --font-size-xs: clamp(0.79rem, 0.7715rem + 0.0925vw, 0.8681rem);
+  /* @link https://utopia.fyi/type/calculator/?c=320,16,1.125,1672,20,1.2,8,1,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=m,2xl,l,12 */
 
   /* 14.22px -> 16.67px */
   --font-size-sm: clamp(0.8888rem, 0.8525rem + 0.1812vw, 1.0419rem);
@@ -32,7 +30,6 @@
   /* 32.44px -> 59.72px */
   --font-size-5xl: clamp(2.0275rem, 1.6239rem + 2.0178vw, 3.7325rem);
 
-  --line-height-xs: 1.46;
   --line-height-sm: 1.43;
   --line-height-md: 1.4;
   --line-height-lg: 1.36;
