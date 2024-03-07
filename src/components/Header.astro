@@ -1,188 +1,187 @@
 ---
+import ThemeSwitch from './ThemeSwitch.astro';
+import Icon from './Icon.astro';
+
 const url = Astro.url.pathname;
 ---
 
+<header class="site-header show" id="siteHeader">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <nav id="nav">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Tyler Combs</a>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-expanded="false"
+        aria-controls="menu"
+      >
+        <span class="visually-hidden">Menu</span>
+        <div id="menuToggleIcon" class="menu-toggle__icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <g>
+              <path d="m3.7 6.8h16.5"></path>
+            </g>
+            <g>
+              <path d="m3.7 12h16.5"></path>
+            </g>
+            <g>
+              <path d="m3.7 17.2h16.5"></path>
+            </g>
+          </svg>
+        </div>
+      </button>
+    </div>
+    <ul id="menu">
+      <li>
+        <a href="/" aria-current={url.toString() === '/' ? 'page' : undefined}
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          href="/about/"
+          aria-current={url.toString() === '/about/' ? 'page' : undefined}
+          >About</a
+        >
+      </li>
+      <li>
+        <a
+          href="/contact/"
+          aria-current={url.toString() === '/contact/' ? 'page' : undefined}
+          >Contact</a
+        >
+      </li>
+      <li>
+        <a href="https://github.com/tylercombs">
+          <span class="visually-hidden">GitHub</span>
+          <Icon name="github" size="1.4em" />
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/tylercombs/">
+          <span class="visually-hidden">LinkedIn</span>
+          <Icon name="linkedin" size="1.4em" />
+        </a>
+      </li>
+      <li>
+        <ThemeSwitch />
+      </li>
+    </ul>
+  </nav>
+</header>
+
 <style lang="scss">
   @use '../styles/_mixins.scss' as *;
+  @use '../styles/_variables.scss' as *;
 
   .site-header {
-    margin: 0 auto;
     max-width: 1920px;
-    padding: 1rem 2rem;
+    padding: var(--space-md) var(--grid-gutter) 0 var(--grid-gutter);
     position: relative;
     width: 100%;
-
-    @media (min-width: 390px) {
-      padding: 2.5rem;
-    }
-
-    @media (min-width: 1000px) {
-      align-items: center;
-      display: grid;
-      gap: 2.5rem;
-      grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
-    }
-
-    @media (min-width: 1200px) {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    }
-
-    @media (min-width: 1400px) {
-      gap: 5rem;
-      padding: 2.5rem 5rem;
-    }
-
-    @media (min-width: 1600px) {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    }
+    z-index: 0;
 
     &.show {
-      background-color: var(--site-header__background-color);
+      @media screen and (max-width: calc($mobile-breakpoint - 1px)) {
+        background-color: var(--color-header-background);
+        padding: var(--space-md) var(--grid-gutter);
+      }
+    }
+  }
 
-      @media (min-width: 1000px) {
-        background-color: transparent;
+  .site-header__inner {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .site-title {
+    color: var(--color-logo-text);
+    font-size: var(--font-size-2xl);
+    font-variation-settings: var(--width-expanded);
+    font-weight: 800;
+    line-height: 1;
+    padding-inline-end: var(--space-md);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: filter 0.3s ease-out;
+    will-change: filter;
+
+    &:hover {
+      filter: drop-shadow(2px 2px var(--color-nav-link-shadow));
+      transition: filter 0.1s ease-in;
+    }
+  }
+
+  nav {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md-lg);
+    justify-content: space-between;
+
+    @media screen and (min-width: $mobile-breakpoint) {
+      flex-direction: row;
+    }
+  }
+
+  #menu {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md-lg);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    @media (min-width: $mobile-breakpoint) {
+      flex-direction: row;
+    }
+
+    @at-root .site-header:not(.show) nav ul {
+      @media (max-width: calc($mobile-breakpoint - 1px)) {
+        @include visually-hidden;
       }
     }
 
-    .site-title {
-      display: flex;
+    li a {
       align-items: center;
-      font-size: 2rem;
-      font-variation-settings: 'wdth' 125;
-      font-weight: 800;
-      height: 5rem;
-      line-height: 1.75rem;
-      padding-right: 5rem;
-      margin-left: -1rem;
-      text-transform: uppercase;
+      color: var(--color-nav-link-text);
+      display: flex;
+      @include font-size('md');
+      font-weight: 700;
+      gap: 0.5rem;
+      padding: var(--space-3xs);
+      text-decoration: none;
 
-      @media (min-width: 1000px) {
-        padding-right: 0;
+      @media screen and (max-width: $mobile-breakpoint - 1px) {
+        margin-inline-start: -1rem;
       }
 
-      a {
-        color: var(--black);
-        text-decoration: none;
-        padding: 1rem;
-        transition-property: transform;
-        transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-in.
-        transition-duration: 300ms;
-
-        &:hover {
-          transform: scale(1.04);
-          transition-timing-function: cubic-bezier(0, 0, 0.2, 1); // ease-out.
-          transition-duration: 150ms;
-        }
-
-        &:focus {
-          outline: solid 0.25rem var(--link--focus__outline-color);
-          outline-offset: 0.5rem;
-          border-radius: 999em;
-        }
-
-        &:active {
-          transform: scale(0.96);
-        }
-      }
-    }
-
-    nav {
-      margin-left: -0.875rem;
-
-      .menu-toggle__container {
-        position: absolute;
-        top: 0.5rem;
-        right: 0;
-        padding: 1.25rem;
-
-        @media (min-width: 390px) {
-          padding: 2.5rem;
-        }
-
-        @media (min-width: 1000px) {
-          display: none;
-        }
-
-        @at-root .no-js .menu-toggle__container {
-          display: none;
-        }
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 0.5rem;
+        width: 0.5rem;
       }
 
-      #menu {
-        list-style-type: none;
-        padding: 0;
-        grid-row: 2 / 3;
+      &[aria-current='page']:before {
+        border-radius: 999rem;
+        background-color: var(--color-nav-link-indicator);
+      }
 
-        @media (min-width: 1000px) {
-          align-items: center;
-          display: flex;
-          gap: 0.5rem;
-          justify-content: space-between;
-        }
-
-        @at-root .site-header:not(.show) nav ul {
-          @media (max-width: 999px) {
-            border: 0;
-            clip: rect(0 0 0 0);
-            height: auto;
-            margin: 0;
-            overflow: hidden;
-            padding: 0;
-            position: absolute;
-            width: 1px;
-            white-space: nowrap;
-          }
-        }
-
-        li {
-          display: flex;
-          justify-content: center;
-
-          a {
-            align-items: center;
-            color: var(--nav-link__color);
-            display: inline-block;
-            font-size: 1.25rem;
-            font-variation-settings: 'wdth' 125;
-            font-weight: 800;
-            min-width: 60px;
-            padding: 0.875rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition-property: transform;
-            transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-in.
-            transition-duration: 300ms;
-
-            &:hover {
-              transform: scale(1.06);
-              transition-timing-function: cubic-bezier(
-                0,
-                0,
-                0.2,
-                1
-              ); // ease-out.
-              transition-duration: 150ms;
-            }
-
-            &:focus {
-              outline: solid 0.25rem var(--link--focus__outline-color);
-              outline-offset: 0.5rem;
-              border-radius: 999em;
-            }
-
-            &:active {
-              transform: scale(0.94);
-            }
-
-            svg {
-              fill: currentColor;
-              height: 2rem;
-              vertical-align: middle;
-              width: 2rem;
-            }
-          }
-        }
+      .icon {
+        display: inline-block;
+        width: calc(var(--font-size-md) * 1.4);
+        height: calc(var(--font-size-md) * 1.4);
       }
     }
   }
@@ -194,379 +193,161 @@ const url = Astro.url.pathname;
     top: 1rem;
     left: 1rem;
 
-    &:hover {
-      transform: scale(1.06);
-    }
-
-    &:focus {
-      outline: solid 0.25rem var(--link--focus__outline-color);
-      outline-offset: 0.5rem;
-      border-radius: 999em;
-    }
-
     &:not(:focus) {
       @include visually-hidden;
     }
   }
 
   .menu-toggle {
-    align-items: center;
-    background-color: var(--menu-toggle__background-color);
-    border: none;
+    --background-color: var(--color-menu-toggle-background);
+    --border-color: var(--color-menu-toggle-border);
+    --border-width: 2px;
+    --border-radius: 50%;
+    --color: var(--color-menu-toggle-icon);
+    --shadow: var(--color-menu-toggle-shadow-background);
+
+    background-color: var(--background-color);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
     cursor: pointer;
     border-radius: 99rem;
-    display: flex;
-    justify-content: center;
-    height: 3.75rem;
-    width: 3.75rem;
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-in.
-    transition-duration: 300ms;
-
-    &:hover {
-      transform: scale(1.04);
-      transition-timing-function: cubic-bezier(0, 0, 0.2, 1); // ease-out.
-      transition-duration: 150ms;
-    }
-
-    &:focus {
-      outline: solid 0.25rem var(--link--focus__outline-color);
-      outline-offset: 0.5rem;
-      border-radius: 999em;
-    }
-
-    &:active {
-      transform: scale(0.96);
-    }
-
-    @at-root .site-header.show nav .menu-toggle {
-      background-color: var(--menu-toggle--show__background-color);
-    }
-
-    @media (min-width: 1000px) {
-      border: 0;
-      clip: rect(0 0 0 0);
-      height: auto;
-      margin: 0;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px;
-      white-space: nowrap;
-    }
-  }
-
-  .menu-toggle__icon {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-
-    div {
-      background-color: var(--white);
-      display: block;
-      width: 26px;
-      height: 4px;
-      border-radius: 1px;
-      transform-origin: center;
-      transition: all 0.3s ease-out;
-    }
-
-    @at-root .site-header.show nav .menu-toggle .menu-toggle__icon {
-      display: block;
-
-      div {
-        opacity: 0;
-      }
-
-      div:first-child {
-        opacity: 1;
-        width: 30px;
-        transform: translate(0, 4px) rotate(-45deg);
-      }
-
-      div:last-child {
-        opacity: 1;
-        width: 30px;
-        transform: translate(0, -4px) rotate(45deg);
-      }
-    }
-  }
-
-  #colorSchemeToggle {
-    border: 3px solid var(--color-scheme-toggle__border-color);
-    display: flex;
-    background-color: var(--white);
-    border-radius: 99rem;
-    margin: 1.25rem auto 0 auto;
-    padding: 0;
+    padding: 0.375rem;
     position: relative;
-    width: fit-content;
-    z-index: 0;
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 1, 1); // ease-in.
-    transition-duration: 300ms;
-
-    &:hover {
-      transform: scale(1.04);
-      transition-timing-function: cubic-bezier(0, 0, 0.2, 1); // ease-out.
-      transition-duration: 150ms;
-    }
-
-    @media (min-width: 1000px) {
-      margin: 0 0 0 0.875rem;
-    }
 
     &::before {
+      background-color: var(--shadow);
+      border-radius: var(--border-radius);
       content: '';
-      height: 100%;
-      background-color: var(--color-scheme-toggle__active__background-color);
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      clip-path: var(--color-scheme-toggle__clip-path);
-      transition: clip-path 0.5s;
+      inset: calc(var(--border-width) * -1);
+      z-index: -10;
+      transform: translate(2px, 2px);
+      transition:
+        opacity 0.4s ease-out,
+        transform 0.3s ease-out;
     }
 
-    input {
-      @include visually-hidden;
+    @media (min-width: $mobile-breakpoint) {
+      display: none;
+    }
 
-      &#colorSchemeLight:focus ~ label[for='colorSchemeLight'],
-      &#colorSchemeDark:focus ~ label[for='colorSchemeDark'] {
-        outline: solid 0.25rem var(--link--focus__outline-color);
-        outline-offset: 0.5rem;
+    &:hover {
+      &::before {
+        transform: translate(1px, 1px);
+        transition:
+          opacity 0.05s ease-in,
+          transform 0.1s ease-in;
       }
     }
 
-    label {
-      cursor: pointer;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      height: 3.375rem;
-      width: 3.375rem;
-      z-index: 100;
+    @at-root .no-js .menu-toggle {
+      display: none;
+    }
 
-      &[for='colorSchemeLight'] {
-        color: var(--color-scheme-toggle__light-color);
+    @at-root .site-header.show .menu-toggle {
+      --background-color: var(--color-menu-toggle-background-show);
+      --color: var(--color-menu-toggle-icon-show);
+      --shadow: var(--color-menu-toggle-shadow-background-show);
+
+      background-color: var(--color-menu-toggle-background-show);
+    }
+
+    @media (min-width: $mobile-breakpoint) {
+      display: none;
+    }
+
+    .menu-toggle__icon {
+      color: var(--color);
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+
+  .site-header.show .menu-toggle__icon svg g {
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+
+    path {
+      transform-box: fill-box;
+      transform-origin: center;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:nth-of-type(1) {
+      transform: translateY(5.25px);
+
+      path {
+        transform: rotate(45deg);
       }
-
-      &[for='colorSchemeDark'] {
-        color: var(--color-scheme-toggle__dark-color);
-        margin-left: -7px;
+    }
+    &:nth-of-type(2) {
+      path {
+        scale: 0;
       }
+    }
+    &:nth-of-type(3) {
+      transform: translateY(-5.25px);
 
-      svg {
-        fill: currentColor;
-        width: 2rem;
+      path {
+        transform: rotate(-45deg);
       }
     }
   }
 </style>
-<header class="site-header" id="siteHeader">
-  <a href="#main" class="skip-link">Skip to content</a>
-  <div class="site-title"><a href="/">Tyler Combs</a></div>
-  <nav id="nav">
-    <div class="menu-toggle__container">
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-expanded="false"
-        aria-controls="menu"
-        ><span class="visually-hidden">Menu</span><div
-          class="menu-toggle__icon"
-          id="menuToggleIcon">
-          <div></div><div></div><div></div>
-        </div>
-      </button>
-    </div>
-    <ul id="menu">
-      <li>
-        <a
-          href="/about/"
-          class={url.toString() === '/about/' ? 'active' : ''}
-          aria-current={url.toString() === '/about/' ? 'page' : undefined}
-          tabindex="-1">About</a
-        >
-      </li>
-      <li>
-        <a
-          href="/contact/"
-          class={url.toString() === '/contact/' ? 'active' : ''}
-          aria-current={url.toString() === '/about/' ? 'page' : undefined}
-          tabindex="-1">Contact</a
-        >
-      </li>
-      <li>
-        <a href="https://github.com/tylercombs" title="GitHub" tabindex="-1"
-          ><span class="visually-hidden">GitHub</span><svg
-            viewBox="0 0 32 32"
-            xmlns="http://www.w3.org/2000/svg"
-            ><path
-              d="m11.4 24c0 .1-.1.2-.3.2s-.3-.1-.3-.2.1-.2.3-.2c.1 0 .3.1.3.2zm-1.8-.3c0 .1.1.2.2.3s.3 0 .4-.1c0-.1-.1-.2-.2-.3-.2 0-.4 0-.4.1zm2.5-.1c-.2 0-.3.1-.3.3 0 .1.2.2.3.1.2 0 .3-.1.3-.3 0 0-.1-.1-.3-.1zm3.7-21.6c-7.8 0-13.8 5.9-13.8 13.8 0 6.3 3.9 11.6 9.6 13.5.7.1 1-.3 1-.7s0-2.3 0-3.5c0 0-4 .8-4.8-1.7 0 0-.6-1.6-1.6-2.1 0 0-1.3-.9.1-.9 0 0 1.4.1 2.2 1.5 1.2 2.2 3.3 1.6 4.1 1.2.1-.9.5-1.5.9-1.9-3.2-.4-6.3-.8-6.3-6.2 0-1.6.4-2.3 1.3-3.3-.1-.4-.6-1.9.1-3.8 1.2-.4 3.9 1.5 3.9 1.5 1.1-.3 2.3-.5 3.5-.5s2.4.2 3.5.5c0 0 2.7-1.9 3.9-1.5.8 2 .3 3.5.1 3.8.9 1 1.5 1.8 1.5 3.3 0 5.4-3.3 5.9-6.5 6.2.5.4 1 1.3 1 2.6v4.7c0 .4.3.8 1 .7 5.7-1.8 9.5-7.2 9.5-13.4 0-7.9-6.4-13.8-14.2-13.8zm-8.3 19.5c-.1.1-.1.2 0 .3s.2.1.3.1c.1-.1.1-.2 0-.3-.1-.2-.2-.2-.3-.1zm-.6-.5c0 .1 0 .2.1.2.1.1.2 0 .2 0 0-.1 0-.2-.1-.2-.1-.1-.2 0-.2 0zm1.8 2c-.1.1-.1.2.1.4.1.1.3.1.4.1.1-.1 0-.2-.1-.4-.2-.2-.3-.2-.4-.1zm-.6-.8c-.1.1-.1.2 0 .3s.2.2.3.1.1-.2 0-.4c-.1 0-.2-.1-.3 0z"
-            ></path>
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://www.linkedin.com/in/tylercombs/"
-          title="LinkedIn"
-          tabindex="-1"
-          ><span class="visually-hidden">LinkedIn</span><svg
-            viewBox="0 0 32 32"
-            xmlns="http://www.w3.org/2000/svg"
-            ><path
-              d="m26.3 4h-20.6c-.9 0-1.7.8-1.7 1.7v20.5c0 1 .8 1.7 1.7 1.7h20.6c.9 0 1.7-.8 1.7-1.7v-20.5c0-.9-.8-1.7-1.7-1.7zm-15 20.6h-3.6v-11.5h3.6zm-1.8-13c-1.1 0-2.1-.9-2.1-2.1s.9-2.1 2.1-2.1c1.1 0 2.1.9 2.1 2.1-.1 1.1-1 2.1-2.1 2.1zm15.1 13h-3.6v-5.6c0-1.3 0-3-1.8-3-1.9 0-2.1 1.4-2.1 2.9v5.7h-3.6v-11.5h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5z"
-            ></path>
-          </svg>
-        </a>
-      </li>
-      <li>
-        <fieldset
-          id="colorSchemeToggle"
-          aria-label="Dark/Light Mode Switch"
-          role="radiogroup">
-          <input
-            type="radio"
-            id="colorSchemeLight"
-            name="colorScheme"
-            value="light"
-            tabindex="-1"
-            checked
-          />
-          <label for="colorSchemeLight"
-            ><span class="visually-hidden">Light Mode</span><svg
-              viewBox="0 0 32 32"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                d="m9.6 11.2c.2.2.5.3.8.3s.6-.1.8-.3c.4-.4.4-1.2 0-1.6l-2.1-2.1c-.4-.4-1.1-.4-1.6 0-.4.5-.4 1.2 0 1.6zm6.4-2c.6 0 1.1-.5 1.1-1.1v-3c0-.6-.5-1.1-1.1-1.1s-1.1.5-1.1 1.1v3c0 .6.5 1.1 1.1 1.1zm-6.8 6.8c0-.6-.5-1.1-1.1-1.1h-3c-.6 0-1.1.5-1.1 1.1s.5 1.1 1.1 1.1h3c.6 0 1.1-.5 1.1-1.1zm12.4-4.4c.3 0 .6-.1.8-.3l2.1-2.1c.4-.4.4-1.2 0-1.6s-1.2-.4-1.6 0l-2.1 2.1c-.4.4-.4 1.2 0 1.6.2.1.5.3.8.3zm-5.6 11.2c-.6 0-1.1.5-1.1 1.1v3c0 .6.5 1.1 1.1 1.1s1.1-.5 1.1-1.1v-3c0-.6-.5-1.1-1.1-1.1zm-6.4-2-2.1 2.1c-.4.4-.4 1.2 0 1.6.2.2.5.3.8.3s.6-.1.8-.3l2.1-2.1c.4-.4.4-1.2 0-1.6-.4-.5-1.1-.5-1.6 0zm17.3-5.9h-3c-.6 0-1.1.5-1.1 1.1s.5 1.1 1.1 1.1h3c.6 0 1.1-.5 1.1-1.1s-.5-1.1-1.1-1.1zm-4.5 5.9c-.4-.4-1.2-.4-1.6 0s-.4 1.2 0 1.6l2.1 2.1c.2.2.5.3.8.3s.6-.1.8-.3c.4-.4.4-1.2 0-1.6zm-6.4-10c-2.9 0-5.2 2.3-5.2 5.2s2.4 5.2 5.2 5.2c2.9 0 5.2-2.4 5.2-5.2 0-2.9-2.3-5.2-5.2-5.2z"
-              ></path>
-            </svg>
-          </label>
-          <input
-            type="radio"
-            id="colorSchemeDark"
-            name="colorScheme"
-            value="dark"
-            tabindex="-1"
-          />
-          <label for="colorSchemeDark"
-            ><span class="visually-hidden">Dark Mode</span><svg
-              viewBox="0 0 32 32"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                d="m22.1 20.4c-.5.1-.9.1-1.3.1-3.4 0-6.3-2.8-6.3-6.3 0-2.3 1.2-4.3 3.2-5.4.3-.2.2-.6-.1-.7-.4 0-1.1-.1-1.5-.1-4.5 0-8.1 3.6-8.1 8s3.6 8 8.1 8c2.5 0 4.8-1.1 6.3-3 .2-.2 0-.6-.3-.6z"
-              ></path>
-            </svg>
-          </label>
-        </fieldset>
-      </li>
-    </ul>
-  </nav>
-</header>
-<script is:inline>
-// Check the dark-mode radio if the override is set to dark, or no override is set but the system prefers dark mode.
-if (
-  colorSchemeOverride === 'dark' ||
-  (!hasColorSchemeOverride &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches)
-) {
-  document.querySelector('#colorSchemeDark').checked = true;
-}
-</script>
+
 <script>
-  // Color Mode Toggle.
-  const setColorScheme = (scheme) => {
-    // Scheme was given.
-    if (scheme) {
-      // Update data-* attr on html.
-      document.documentElement.setAttribute('data-color-scheme', scheme);
-      // Persist in local storage.
-      window.localStorage.setItem('color-scheme', scheme);
-      // Make sure the checkbox is up-to-date.
-      let toggle = document.querySelector(
-        '#colorSchemeLight'
-      ) as HTMLInputElement;
-      if (scheme === 'dark') {
-        toggle = document.querySelector('#colorSchemeDark') as HTMLInputElement;
-      }
-      toggle.checked = true;
-    }
-  };
-
-  document.querySelectorAll('input[name="colorScheme"]').forEach((element) =>
-    element.addEventListener('change', (event) => {
-      event.preventDefault();
-      setColorScheme((event.target as HTMLInputElement).value);
-    })
-  );
-
-  // Keep an eye out for System Light/Dark Mode Changes.
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  mediaQuery.onchange = () => {
-    // Ignore change if there's an override set.
-    if (document.documentElement.getAttribute('data-color-scheme')) {
-      return;
-    }
-
-    // Make sure the checkbox is up-to-date
-    if (mediaQuery.matches) {
-      const toggle = document.querySelector(
-        '#colorSchemeDark'
-      ) as HTMLInputElement;
-      toggle.checked = true;
-    }
-  };
-
   // Menu Toggle.
-  const getFocusableElements = (parent) => {
-    if (!parent) {
-      console.warn('You need to pass a parent HTMLElement');
-      return []; // Return array so length queries will work
-    }
+  document.addEventListener('astro:page-load', () => {
+    const getFocusableElements = (parent: HTMLElement | null) => {
+      if (!parent) {
+        console.warn('You need to pass a parent HTMLElement');
+        return []; // Return array so length queries will work
+      }
 
-    return parent.querySelectorAll(
-      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled]), details:not([disabled]), summary:not(:disabled)'
-    );
-  };
+      return parent.querySelectorAll(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled]), details:not([disabled]), summary:not(:disabled)',
+      );
+    };
 
-  const menuToggle = document.getElementById('menuToggle');
-  const header = document.getElementById('siteHeader');
-  const menu = document.getElementById('menu');
-  const focusableElements = getFocusableElements(menu);
+    const menuToggle = document.getElementById('menuToggle');
+    const header = document.getElementById('siteHeader');
+    const menu = document.getElementById('menu');
+    const focusableElements = getFocusableElements(menu);
 
-  const openMenu = () => {
-    header.classList.add('show');
-    menuToggle.setAttribute('aria-expanded', 'true');
-    focusableElements.forEach((element) => element.removeAttribute('tabindex'));
-  };
+    const openMenu = () => {
+      header?.classList.add('show');
+      menuToggle?.setAttribute('aria-expanded', 'true');
+      focusableElements.forEach((element) =>
+        element.removeAttribute('tabindex'),
+      );
+    };
 
-  const closeMenu = () => {
-    header.classList.remove('show');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    focusableElements.forEach((element) =>
-      element.setAttribute('tabindex', '-1')
-    );
-  };
+    const closeMenu = () => {
+      header?.classList.remove('show');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      focusableElements.forEach((element) =>
+        element.setAttribute('tabindex', '-1'),
+      );
+    };
 
-  const mql = window.matchMedia('(min-width: 1000px)');
-  if (mql.matches) {
-    openMenu();
-  }
-  mql.onchange = (event) => {
-    if (event.matches) {
-      openMenu();
-    } else {
-      closeMenu();
-    }
-  };
-
-  menuToggle.addEventListener('click', () => {
-    if (header.classList.contains('show')) {
-      closeMenu();
-    } else {
+    const mql = window.matchMedia('(min-width: 58rem)');
+    if (mql.matches) {
       openMenu();
     }
+    mql.onchange = (event) => {
+      if (event.matches) {
+        openMenu();
+      } else {
+        closeMenu();
+      }
+    };
+
+    menuToggle?.addEventListener('click', () => {
+      if (header?.classList.contains('show')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
   });
 </script>

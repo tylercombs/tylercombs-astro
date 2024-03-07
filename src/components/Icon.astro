@@ -1,0 +1,42 @@
+---
+import { Icons } from '../components/Icons';
+
+interface Props {
+  name: keyof typeof Icons;
+  label?: string;
+  color?: string;
+  size?: string;
+  class?: string;
+}
+
+const {
+  name,
+  class: className,
+  label,
+  size = '1em',
+  color,
+  ...rest
+} = Astro.props;
+const a11yAttrs = label
+  ? ({ 'aria-label': label } as const)
+  : ({ 'aria-hidden': 'true' } as const);
+---
+
+<svg
+  {...a11yAttrs}
+  class={className}
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  set:html={Icons[name]}
+  {...rest}
+/>
+
+<style define:vars={{ 'icon-color': color, 'icon-size': size }}>
+  svg {
+    color: var(--icon-color, currentColor);
+    font-size: var(--icon-size, 1em);
+    width: 1em;
+    height: 1em;
+  }
+</style>

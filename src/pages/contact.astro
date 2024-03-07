@@ -1,199 +1,151 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+
+const description =
+  'Interested in working with me? Just want to say hello? Send me a message!';
 ---
 
-<BaseLayout title="About Me - Tyler Combs">
-  <style lang="scss">
-    /* Light Color Scheme (Default + Override) */
-    :root,
-    :root[data-color-scheme='light'] {
-      --site-header__background-color: var(--yellow);
-      --button--primary__background-color: var(--red);
-      --button--primary__color: var(--white);
-      --heading__color: var(--yellow);
-      --body__background-color: var(--white);
-      --menu-toggle__background-color: var(--yellow);
-      --menu-toggle--show__background-color: var(--black);
-      --nav-link__color: var(--white);
-      --color-scheme-toggle__border-color: transparent;
-      --color-scheme-toggle__active__background-color: var(--black);
-      --input__border-color: var(--yellow);
-      --input__color: var(--black);
-      --link--focus__outline-color: var(--red);
-
-      @media (min-width: 1000px) {
-        --nav-link__color: var(--black);
-        --color-scheme-toggle__border-color: var(--black);
-        --color-scheme-toggle__active__background-color: var(--yellow);
-      }
-    }
-
-    /* Dark Color Scheme (System Preference) */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --button--primary__background-color: var(--white);
-        --heading__color: var(--white);
-        --body__background-color: var(--yellow);
-        --site-header__background-color: var(--white);
-        --menu-toggle__background-color: var(--black);
-        --menu-toggle--show__background-color: var(--yellow);
-        --nav-link__color: var(--yellow);
-        --color-scheme-toggle__border-color: var(--black);
-        --color-scheme-toggle__active__background-color: var(--yellow);
-        --input__color: var(--black);
-
-        @media (min-width: 1000px) {
-          --nav-link__color: var(--white);
-          --color-scheme-toggle__border-color: transparent;
-          --color-scheme-toggle__active__background-color: var(--black);
-        }
-      }
-    }
-
-    /* Dark Color Scheme (Override) */
-    :root[data-color-scheme='dark'] {
-      --button--primary__background-color: var(--black);
-      --heading__color: var(--white);
-      --body__background-color: var(--yellow);
-      --site-header__background-color: var(--white);
-      --menu-toggle__background-color: var(--black);
-      --menu-toggle--show__background-color: var(--yellow);
-      --nav-link__color: var(--yellow);
-      --color-scheme-toggle__border-color: var(--black);
-      --color-scheme-toggle__active__background-color: var(--yellow);
-      --input__color: var(--black);
-
-      @media (min-width: 1000px) {
-        --nav-link__color: var(--white);
-        --color-scheme-toggle__border-color: transparent;
-        --color-scheme-toggle__active__background-color: var(--black);
-      }
-    }
-
-    .content {
-      position: relative;
-    }
-
-    .intro {
-      @media (min-width: 1000px) {
-        grid-column: 1 / 2;
-      }
-    }
-
-    p {
-      margin-bottom: 1.875rem;
-
-      @media (min-width: 390px) {
-        margin-bottom: 2.5rem;
-      }
-    }
-
-    .button--primary {
-      &::before {
-        background-color: var(--button--primary__background-color);
-      }
-    }
-
-    form {
-      opacity: 1;
-      transition: opacity 400ms;
-
-      &.hide {
-        opacity: 0;
-        transition: opacity 400ms;
-      }
-
-      label {
-        color: var(--black);
-        display: block;
-        font-size: 1.25rem;
-        font-weight: 800;
-        margin-bottom: 0.75rem;
-        text-transform: uppercase;
-        font-variation-settings: 'wdth' 105;
-
-        @media (min-width: 414px) {
-          font-variation-settings: 'wdth' 125;
-        }
-      }
-
-      .input-wrap {
-        margin-bottom: 1.5rem;
-      }
-
-      input,
-      textarea {
-        appearance: none;
-        background-color: var(--white);
-        border: 3px solid var(--input__border-color);
-        border-radius: 1.875rem;
-        color: var(--input__color);
-        display: block;
-        font-size: 1.25rem;
-        width: 100%;
-        padding: 0.75rem 1rem;
-        resize: none;
-
-        &:focus {
-          outline: solid 0.25rem var(--link--focus__outline-color);
-          outline-offset: 0.5rem;
-        }
-      }
-
-      button[type='submit'] {
-        cursor: pointer;
-      }
-    }
-
-    #thanks {
-      position: absolute;
-      font-size: 1.5rem;
-      font-variation-settings: 'wdth' 125;
-      font-weight: 800;
-      opacity: 0;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      transition: opacity 400ms;
-
-      &.show {
-        opacity: 1;
-        transition: opacity 400ms;
-      }
-    }
-  </style>
-
+<Layout title="Contact Me - Tyler Combs" description={description}>
   <div class="intro">
-    <h1>Get in Touch</h1>
+    <h1>What can I do for you?</h1>
     <p>
-      Interested in working with me? Just want to say hello? Send me a message!
+      {description}
     </p>
   </div>
   <div class="content">
     <form id="contactForm" name="contact" method="POST" data-netlify="true">
       <label for="name">Name</label>
-      <div class="input-wrap">
+      <div class="input__wrap">
         <input type="text" name="name" id="name" required />
       </div>
       <label for="email">Email</label>
-      <div class="input-wrap">
+      <div class="input__wrap">
         <input type="email" name="email" id="email" required />
       </div>
       <label for="message">Message</label>
-      <div class="input-wrap">
+      <div class="input__wrap">
         <textarea name="message" id="message" cols={30} rows={10} required
         ></textarea>
       </div>
-      <button type="submit" class="button button--primary">Send</button>
+      <Button
+        icon="mail"
+        buttonType="submit"
+        arrow={false}
+        class="button--primary"
+      >
+        Send
+      </Button>
     </form>
     <div id="thanks">Thank You!</div>
   </div>
-</BaseLayout>
+</Layout>
+
+<style lang="scss">
+  @use '../styles/_variables.scss' as *;
+  @use '../styles/_mixins.scss' as *;
+
+  :root {
+    --color-accent-50: var(--yellow-50);
+    --color-accent-100: var(--yellow-100);
+    --color-accent-200: var(--yellow-200);
+    --color-accent-300: var(--yellow-300);
+    --color-accent-400: var(--yellow-400);
+    --color-accent-500: var(--yellow-500);
+    --color-accent-600: var(--yellow-600);
+    --color-accent-700: var(--yellow-700);
+    --color-accent-800: var(--yellow-800);
+    --color-accent-900: var(--yellow-900);
+  }
+
+  .content {
+    position: relative;
+  }
+
+  form {
+    opacity: 1;
+    transition: opacity 400ms;
+
+    &.hide {
+      opacity: 0;
+      transition: opacity 400ms;
+    }
+
+    label {
+      color: var(--black);
+      display: block;
+      @include font-size('md');
+      font-weight: 800;
+      margin-block-end: var(--space-xs);
+    }
+
+    .input__wrap {
+      --border-radius: calc(
+        (
+            (1em * var(--line-height-lg)) + (2 * var(--space-2xs)) +
+              (2 * var(--border-width))
+          ) / 2
+      );
+      --border-width: 2px;
+
+      margin-block-end: var(--space-md);
+      position: relative;
+
+      &::before {
+        background-color: var(--white);
+        border-radius: var(--border-radius);
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        bottom: -4px;
+        right: -2px;
+        z-index: -1;
+      }
+
+      input,
+      textarea {
+        appearance: none;
+        background-color: transparent;
+        border: var(--border-width) solid var(--color-input-border);
+        border-radius: var(--border-radius);
+        color: var(--input__color);
+        display: block;
+        @include font-size('md');
+        width: 100%;
+        margin: -2px 0 0 -2px;
+        padding: var(--space-2xs) var(--space-sm);
+        resize: none;
+      }
+
+      textarea {
+        padding: var(--space-xs) var(--space-sm);
+      }
+    }
+  }
+
+  #thanks {
+    position: absolute;
+    font-size: 1.5rem;
+    font-variation-settings: var(--width-expanded);
+    font-weight: 800;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition: opacity 400ms;
+
+    &.show {
+      opacity: 1;
+      transition: opacity 400ms;
+    }
+  }
+</style>
 
 <script>
   const contactForm = document.getElementById('contactForm') as HTMLFormElement;
   const thanks = document.getElementById('thanks');
-  contactForm.addEventListener('submit', (event) => {
+  contactForm?.addEventListener('submit', (event) => {
     event.preventDefault();
     const formData = new FormData(contactForm);
     fetch('/', {
@@ -203,7 +155,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     })
       .then(() => {
         contactForm.classList.add('hide');
-        thanks.classList.add('show');
+        thanks?.classList.add('show');
       })
       .catch((error) => console.log(error));
   });

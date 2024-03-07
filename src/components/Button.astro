@@ -1,0 +1,123 @@
+---
+import Icon from './Icon.astro';
+import type { Icons } from '../components/Icons';
+
+type Props = {
+  class?: string;
+  href?: string;
+  arrow?: boolean;
+  icon?: keyof typeof Icons;
+  iconPosition?: 'start' | 'end';
+  buttonType?: 'submit' | 'button';
+};
+
+const {
+  class: className = '',
+  href = '',
+  arrow = true,
+  icon = '',
+  buttonType = 'button',
+} = Astro.props;
+const Element = href ? 'a' : 'button';
+const buttonAttrs = {
+  type: Element === 'button' ? buttonType : null,
+};
+---
+
+<Element class:list={['button', className]} href={href} {...buttonAttrs}>
+  {icon && <Icon name={icon} size="1.36em" />}
+  <slot />
+  {arrow && <Icon name="arrow-right" class="arrow" size="1.3em" />}
+</Element>
+
+<style lang="scss">
+  .button {
+    --background-color: var(--color-button-background-primary);
+    --border-color: var(--color-button-border-primary);
+    --border-width: 2px;
+    --border-radius: calc(
+      (
+          (1em * var(--line-height-lg)) + (2 * var(--space-2xs)) +
+            (2 * var(--border-width))
+        ) / 2
+    );
+    --color: var(--color-button-text-primary);
+    --shadow: var(--color-button-shadow-background-primary);
+
+    align-items: center;
+    background-color: var(--background-color);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--color);
+    cursor: pointer;
+    display: flex;
+    font-size: var(--font-size-lg);
+    font-variation-settings: var(--width-semi-expanded);
+    font-weight: 800;
+    gap: var(--space-2xs);
+    justify-content: center;
+    line-height: var(--line-height-lg);
+    padding: var(--space-2xs) var(--space-md);
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    width: 100%;
+
+    @media screen and (min-width: 36rem) {
+      width: auto;
+    }
+
+    &::before {
+      background-color: var(--shadow);
+      border-radius: var(--border-radius);
+      content: '';
+      position: absolute;
+      inset: calc(var(--border-width) * -1);
+      z-index: -10;
+      transform: translate(4px, 4px);
+      transition:
+        opacity 0.4s ease-out,
+        transform 0.3s ease-out;
+    }
+
+    &:hover {
+      &::before {
+        transform: translate(1px, 1px);
+        transition:
+          opacity 0.05s ease-in,
+          transform 0.1s ease-in;
+      }
+
+      .arrow {
+        animation: arrow-bounce 1s infinite;
+      }
+    }
+
+    &.button--secondary {
+      --background-color: var(--color-button-background-secondary);
+      --border-color: var(--color-button-border-secondary);
+      --color: var(--color-button-text-secondary);
+      --shadow: var(--color-button-shadow-background-secondary);
+
+      background-color: var(--background-color);
+      position: relative;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  @keyframes arrow-bounce {
+    0%,
+    100% {
+      transform: none;
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateX(25%);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+</style>

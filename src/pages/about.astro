@@ -1,186 +1,19 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+
+const description =
+  'I’ve been designing and developing websites for more than ten years, with a passion for performance, accessibility, and usability. I’m currently a Software Engineer at Edge Delta, living in Oakland, CA.';
 ---
 
-<BaseLayout title="About Me - Tyler Combs">
-  <style lang="scss">
-    /* Light Color Scheme (Default + Override) */
-    :root,
-    :root[data-color-scheme='light'] {
-      --button--primary__background-color: var(--red);
-      --button--primary__color: var(--white);
-      --heading__color: var(--blue);
-      --body__background-color: var(--white);
-      --site-header__background-color: var(--blue);
-      --menu-toggle__background-color: var(--blue);
-      --menu-toggle--show__background-color: var(--black);
-      --nav-link__color: var(--white);
-      --color-scheme-toggle__border-color: transparent;
-      --color-scheme-toggle__active__background-color: var(--black);
-      --link--focus__outline-color: var(--red);
-
-      @media (min-width: 1000px) {
-        --nav-link__color: var(--black);
-        --color-scheme-toggle__border-color: var(--black);
-        --color-scheme-toggle__active__background-color: var(--blue);
-      }
-    }
-
-    /* Dark Color Scheme (System Preference) */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --button--primary__background-color: var(--white);
-        --button--primary__color: var(--black);
-        --heading__color: var(--white);
-        --body__background-color: var(--blue);
-        --site-header__background-color: var(--white);
-        --menu-toggle__background-color: var(--black);
-        --menu-toggle--show__background-color: var(--blue);
-        --nav-link__color: var(--blue);
-        --color-scheme-toggle__border-color: var(--black);
-        --color-scheme-toggle__active__background-color: var(--blue);
-
-        @media (min-width: 1000px) {
-          --nav-link__color: var(--white);
-          --color-scheme-toggle__border-color: transparent;
-          --color-scheme-toggle__active__background-color: var(--black);
-        }
-      }
-    }
-
-    /* Dark Color Scheme (Override) */
-    :root[data-color-scheme='dark'] {
-      --button--primary__background-color: var(--white);
-      --button--primary__color: var(--black);
-      --heading__color: var(--white);
-      --body__background-color: var(--blue);
-      --site-header__background-color: var(--white);
-      --menu-toggle__background-color: var(--black);
-      --menu-toggle--show__background-color: var(--blue);
-      --nav-link__color: var(--blue);
-      --color-scheme-toggle__border-color: var(--black);
-      --color-scheme-toggle__active__background-color: var(--blue);
-
-      @media (min-width: 1000px) {
-        --nav-link__color: var(--white);
-        --color-scheme-toggle__border-color: transparent;
-        --color-scheme-toggle__active__background-color: var(--black);
-      }
-    }
-
-    .intro {
-      @media (min-width: 1000px) {
-        grid-column: 1 / 2;
-      }
-    }
-
-    p {
-      margin-bottom: 1.875rem;
-
-      @media (min-width: 390px) {
-        margin-bottom: 2.5rem;
-      }
-    }
-
-    .content {
-      @media (min-width: 1200px) {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr), minmax(0, 1fr);
-      }
-
-      h2 {
-        color: var(--heading__color);
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-        text-transform: uppercase;
-        font-variation-settings: 'wdth' 105;
-
-        @media (min-width: 390px) {
-          font-size: 2rem;
-          font-variation-settings: 'wdth' 125;
-        }
-      }
-
-      section {
-        margin-bottom: 2.5rem;
-      }
-
-      .skills {
-        ul {
-          list-style-type: none;
-          margin-top: 0;
-          padding-left: 0;
-
-          li {
-            font-size: 1.25rem;
-            padding-left: 0.5em;
-            text-indent: -0.5em;
-          }
-        }
-      }
-
-      .employment,
-      .education {
-        h3 {
-          display: flex;
-          flex-direction: column;
-          font-size: 1.25rem;
-          font-variation-settings: 'wdth' 105;
-          font-weight: 400;
-          margin-block-end: 1.5rem;
-
-          @media (min-width: 768px) {
-            flex-direction: row;
-            font-size: 1.5rem;
-            column-gap: 0.5em;
-          }
-
-          @media (min-width: 1000px) {
-            flex-wrap: wrap;
-          }
-
-          span {
-            display: block;
-
-            @media (min-width: 768px) {
-              &:last-of-type {
-                margin-inline-start: auto;
-              }
-            }
-
-            @media (min-width: 1000px) {
-              &:first-of-type {
-                width: 100%;
-              }
-            }
-
-            @media (min-width: 1550px) {
-              &:first-of-type {
-                width: auto;
-              }
-            }
-          }
-        }
-
-        ul {
-          font-size: 1rem;
-          line-height: 1.5;
-          margin-bottom: 1.5rem;
-          padding-left: 0;
-        }
-      }
-    }
-  </style>
-
+<Layout title="About Me - Tyler Combs" description={description}>
   <div class="intro">
     <h1>A bit about me.</h1>
     <p>
-      I’ve been designing and developing websites for more than ten years, with
-      a passion for performance, accessibility, and usability. I’m currently a
-      Software Engineer at Edge Delta, living in Oakland, CA.
+      {description}
     </p>
     <div class="links">
-      <a class="button button--primary" href="/contact">Get in Touch</a>
+      <Button href="/contact" class="button--primary">Get in Touch</Button>
     </div>
   </div>
   <div class="content">
@@ -342,4 +175,124 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </h3>
     </section>
   </div>
-</BaseLayout>
+</Layout>
+
+<style lang="scss">
+  @use '../styles/_variables.scss' as *;
+
+  :root {
+    --color-accent-50: var(--blue-50);
+    --color-accent-100: var(--blue-100);
+    --color-accent-200: var(--blue-200);
+    --color-accent-300: var(--blue-300);
+    --color-accent-400: var(--blue-400);
+    --color-accent-500: var(--blue-500);
+    --color-accent-600: var(--blue-600);
+    --color-accent-700: var(--blue-700);
+    --color-accent-800: var(--blue-800);
+    --color-accent-900: var(--blue-900);
+  }
+
+  .intro {
+    @media screen and (min-width: $mobile-breakpoint) {
+      grid-column: 1 / 2;
+    }
+  }
+
+  p {
+    margin-block-end: 1.875rem;
+
+    @media (min-width: 390px) {
+      margin-block-end: 2.5rem;
+    }
+  }
+
+  .content {
+    @media (min-width: 1200px) {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr), minmax(0, 1fr);
+    }
+
+    h2 {
+      color: var(--color-heading);
+      font-size: 1.5rem;
+      margin-block-end: 1.5rem;
+      text-transform: uppercase;
+      font-variation-settings: var(--width-normal);
+
+      @media (min-width: 390px) {
+        font-size: 2rem;
+        font-variation-settings: var(--width-expanded);
+      }
+    }
+
+    section {
+      margin-block-end: 2.5rem;
+    }
+
+    .skills {
+      ul {
+        list-style-type: none;
+        margin-block-start: 0;
+        padding-inline-start: 0;
+
+        li {
+          font-size: 1.25rem;
+          padding-inline-start: 0.5em;
+          text-indent: -0.5em;
+        }
+      }
+    }
+
+    .employment,
+    .education {
+      h3 {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.25rem;
+        font-variation-settings: var(--width-normal);
+        font-weight: 400;
+        margin-block-end: 1.5rem;
+
+        @media (min-width: 768px) {
+          flex-direction: row;
+          font-size: 1.5rem;
+          column-gap: 0.5em;
+        }
+
+        @media screen and (min-width: $mobile-breakpoint) {
+          flex-wrap: wrap;
+        }
+
+        span {
+          display: block;
+
+          @media (min-width: 768px) {
+            &:last-of-type {
+              margin-inline-start: auto;
+            }
+          }
+
+          @media screen and (min-width: $mobile-breakpoint) {
+            &:first-of-type {
+              width: 100%;
+            }
+          }
+
+          @media (min-width: 1550px) {
+            &:first-of-type {
+              width: auto;
+            }
+          }
+        }
+      }
+
+      ul {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-block-end: 1.5rem;
+        padding-inline-start: 0;
+      }
+    }
+  }
+</style>
