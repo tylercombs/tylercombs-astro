@@ -5,7 +5,7 @@ import Icon from './Icon.astro';
 const url = Astro.url.pathname;
 ---
 
-<header class="site-header show" id="siteHeader">
+<header class="site-header" id="siteHeader">
   <a href="#main" class="skip-link">Skip to content</a>
   <nav id="nav">
     <div class="site-header__inner">
@@ -297,57 +297,53 @@ const url = Astro.url.pathname;
 
 <script>
   // Menu Toggle.
-  document.addEventListener('astro:page-load', () => {
-    const getFocusableElements = (parent: HTMLElement | null) => {
-      if (!parent) {
-        console.warn('You need to pass a parent HTMLElement');
-        return []; // Return array so length queries will work
-      }
+  const getFocusableElements = (parent: HTMLElement | null) => {
+    if (!parent) {
+      console.warn('You need to pass a parent HTMLElement');
+      return []; // Return array so length queries will work
+    }
 
-      return parent.querySelectorAll(
-        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled]), details:not([disabled]), summary:not(:disabled)',
-      );
-    };
+    return parent.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled]), details:not([disabled]), summary:not(:disabled)',
+    );
+  };
 
-    const menuToggle = document.getElementById('menuToggle');
-    const header = document.getElementById('siteHeader');
-    const menu = document.getElementById('menu');
-    const focusableElements = getFocusableElements(menu);
+  const menuToggle = document.getElementById('menuToggle');
+  const header = document.getElementById('siteHeader');
+  const menu = document.getElementById('menu');
+  const focusableElements = getFocusableElements(menu);
 
-    const openMenu = () => {
-      header?.classList.add('show');
-      menuToggle?.setAttribute('aria-expanded', 'true');
-      focusableElements.forEach((element) =>
-        element.removeAttribute('tabindex'),
-      );
-    };
+  const openMenu = () => {
+    header?.classList.add('show');
+    menuToggle?.setAttribute('aria-expanded', 'true');
+    focusableElements.forEach((element) => element.removeAttribute('tabindex'));
+  };
 
-    const closeMenu = () => {
-      header?.classList.remove('show');
-      menuToggle?.setAttribute('aria-expanded', 'false');
-      focusableElements.forEach((element) =>
-        element.setAttribute('tabindex', '-1'),
-      );
-    };
+  const closeMenu = () => {
+    header?.classList.remove('show');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    focusableElements.forEach((element) =>
+      element.setAttribute('tabindex', '-1'),
+    );
+  };
 
-    const mql = window.matchMedia('(min-width: 58rem)');
-    if (mql.matches) {
+  const mql = window.matchMedia('(min-width: 58rem)');
+  if (mql.matches) {
+    openMenu();
+  }
+  mql.onchange = (event) => {
+    if (event.matches) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  };
+
+  menuToggle?.addEventListener('click', () => {
+    if (header?.classList.contains('show')) {
+      closeMenu();
+    } else {
       openMenu();
     }
-    mql.onchange = (event) => {
-      if (event.matches) {
-        openMenu();
-      } else {
-        closeMenu();
-      }
-    };
-
-    menuToggle?.addEventListener('click', () => {
-      if (header?.classList.contains('show')) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
   });
 </script>

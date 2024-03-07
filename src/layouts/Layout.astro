@@ -1,5 +1,4 @@
 ---
-// import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.scss';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -38,11 +37,6 @@ const url = new URL(Astro.url.pathname, Astro.site);
       };
 
       setDocumentTheme(document);
-
-      document.addEventListener('astro:before-swap', (event) => {
-        // Pass the incoming document to set the theme on it.
-        setDocumentTheme(event.newDocument);
-      });
     </script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -73,9 +67,6 @@ const url = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" /><!-- 180×180 -->
     <link rel="manifest" href="/manifest.webmanifest" />
-
-    <!-- Astro View Transitions -->
-    <!-- <ViewTransitions /> -->
   </head>
   <body>
     <div class="grid-container">
