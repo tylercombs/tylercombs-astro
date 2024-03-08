@@ -302,7 +302,8 @@ body {
   background-color: var(--color-body-background);
   color: var(--color-text);
   font-family: 'Archivo', sans-serif;
-  @include font-size('md');
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
   min-height: 100dvh;
   position: relative;
 }
@@ -341,7 +342,8 @@ main {
   text-align: center;
 
   p {
-    @include font-size('lg');
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-lg);
     max-width: 60ch;
     text-wrap: pretty;
   }
@@ -364,7 +366,8 @@ main {
 
 h1 {
   color: var(--color-heading);
-  @include font-size('5xl');
+  font-size: var(--font-size-5xl);
   font-weight: 800;
   font-variation-settings: var(--width-semi-expanded);
+  line-height: var(--line-height-5xl);
 }

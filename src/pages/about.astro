@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
 
 const description =
-  'I’ve been designing and developing websites for more than ten years, with a passion for performance, accessibility, and usability. I’m currently a Software Engineer at Edge Delta, living in Oakland, CA.';
+  'I’m a creative web developer with over ten years of experience in marketing, advertising, and product engineering. With a passion for design, performance, accessibility and usability, I draw from a broad range of technical, creative, and strategic skills to craft effective, user-focused solutions.';
 ---
 
 <Layout title="About Me - Tyler Combs" description={description}>
@@ -17,161 +17,178 @@ const description =
     </div>
   </div>
   <div class="content">
-    <section class="skills">
-      <h2>Skills</h2>
-      <ul>
-        <li>
-          <strong>JavaScript</strong>, React, Next.js, Alpine.js, TypeScript,
-          Astro, Prisma, Angular, jQuery, Node.js, Express, Firebase
-        </li>
-        <li>
-          <strong>PHP</strong>, Statamic, Laravel, WordPress, MySQL, PostgreSQL
-        </li>
-        <li>
-          <strong>CSS</strong>, Sass, Tailwind, Bootstrap, CSS Modules, WCAG 2.0
-        </li>
-        <li><strong>Design</strong>, Figma, Adobe Creative Cloud</li>
-      </ul>
+    <section class="experience">
+      <h2>Experience</h2>
+      <div>
+        <h3>
+          <span class="title">Senior Web Developer / Software Engineer II</span>
+          <span class="employer">Edge Delta</span>
+          <span class="date">2022&ndash;2024</span>
+        </h3>
+        <ul>
+          <li>
+            Led design, development, and maintenance of marketing site. Oversaw
+            implementing new features and content, SEO, performance, security,
+            accessibility, and usability.
+          </li>
+          <li>
+            Launched all-new marketing site to enable a CMS, improved
+            performance and accessibility, and brand with Statamic/Laravel,
+            Tailwind, and Alpine.js. Previously supported legacy Angular site.
+          </li>
+          <li>
+            Developed React product application with focus on user onboarding
+            experience and design system implementation with Figma, Mantine,
+            Storybook, and Style Dictionary.
+          </li>
+          <li>Maintained marketing design system in Figma.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>
+          <span class="title">Senior Web Developer</span>
+          <span class="employer">West Advertising</span>
+          <span class="date">2020&ndash;2022</span>
+        </h3>
+        <ul>
+          <li>
+            As sole developer, built and maintained auto dealership sites in
+            WordPress with up to 100,000 pageviews per month per site, featuring
+            inventory feeds, vehicle data and media APIs, and ADF/XML CRM
+            integrations.
+          </li>
+          <li>
+            Built React app for email marketing with personal urls, featuring
+            auth, CSV handling, CRM integration, and an admin dashboard with
+            TypeScript, Next.js, Prisma, and PostgreSQL.
+          </li>
+          <li>
+            Built WordPress plugin for automated lead form submission email
+            reports.
+          </li>
+          <li>Hired and mentored a junior developer.</li>
+          <li>
+            Advocated for web accessibility and maintained WCAG AA compliance
+            across projects.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>
+          <span class="title">Web Developer</span>
+          <span class="employer">West Advertising</span>
+          <span class="date">2017&ndash;2020</span>
+        </h3>
+        <ul>
+          <li>
+            Created price unlocking features for auto dealership inventory with
+            dynamic html emails, cookie auth, scheduled reminders, and CRM
+            integration.
+          </li>
+          <li>
+            Internationalized WordPress sites for English and Spanish with
+            language switching, subdirectory routing, gettext, and Poedit.
+          </li>
+          <li>
+            Built WordPress plugins for scheduled CSV import/export to post
+            content.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>
+          <span class="title">Graphic & Web Designer</span>
+          <span class="employer">West Advertising</span>
+          <span class="date">2014&ndash;2017</span>
+        </h3>
+        <ul>
+          <li>
+            Built and tested weekly cross-platform HTML emails for multiple
+            clients.
+          </li>
+          <li>
+            Designed print, display, and outdoor advertisements, promotional
+            posters, and greeting cards.
+          </li>
+          <li>
+            Updated website content and graphics, including landing pages,
+            blogs, videos, offers, and specials.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>
+          <span class="title">Art Director</span>
+          <span class="employer">Nimblefish Technologies</span>
+          <span class="date">2013&ndash;2014</span>
+        </h3>
+        <ul>
+          <li>
+            Creative strategy, website and email design, branding, and video
+            editing on automated marketing campaigns for clients including
+            Disney Vacation Club and Florida Blue.
+          </li>
+          <li>
+            Jump-started adoption of mobile and responsive web development at
+            Nimblefish.
+          </li>
+        </ul>
+      </div>
     </section>
 
-    <section class="employment">
-      <h2>Employment</h2>
-      <h3>
-        <span><strong>Software Engineer</strong></span>
-        <span>Edge Delta</span>
-        <span>2023&ndash;Present</span>
-      </h3>
-      <ul>
-        <li>
-          Transitioned to Engineering team, working in React, Angular, and
-          Storybook with focus on design system and user onboarding.
-        </li>
-        <li>
-          Contributed to hackathon on WCAG AA compliance, including screen
-          reader accessibility, focus management, and keyboard navigation.
-        </li>
-      </ul>
-
-      <h3>
-        <span><strong>Senior Web Developer</strong></span>
-        <span>Edge Delta</span>
-        <span>2022&ndash;Present</span>
-      </h3>
-      <ul>
-        <li>
-          Designed and built new marketing site with Laravel, Statamic,
-          Alpine.js, and Tailwind, with a focus on CMS authoring, performance,
-          accessibility, and branding.
-        </li>
-        <li>
-          Supported legacy Angular marketing site by updating design, improving
-          performance, optimizing SEO and meeting accessibility standards.
-        </li>
-        <li>Maintained design system in Figma.</li>
-      </ul>
-
-      <h3>
-        <span><strong>Senior Web Developer</strong></span>
-        <span>West Advertising</span>
-        <span>2020&ndash;2022</span>
-      </h3>
-      <ul>
-        <li>
-          Built React web app with Next.js, TypeScript, Prisma, and PostgreSQL,
-          featuring mailing list CSV upload/parse/export, personal URL routing
-          and authentication, CRM integration, and admin dashboard.
-        </li>
-        <li>
-          Built and maintained auto dealership websites averaging up to 100,000
-          pageviews per month per site, featuring inventory feeds, vehicle data
-          and media APIs, and ADF/XML CRM integrations.
-        </li>
-        <li>
-          Administered DigitalOcean and ServerPilot VPSs, DNS, SSH/SFTP, cron,
-          phpMyAdmin, and .htaccess.
-        </li>
-        <li>
-          Executed high fidelity frontend to Mazda Digital Certified guidelines
-          in Sass and vanilla JavaScript.
-        </li>
-        <li>Hired and mentored a junior developer.</li>
-        <li>
-          Advocated for web accessibility and maintained WCAG compliance across
-          projects.
-        </li>
-        <li>
-          Defined Google Analytics goals and implemented analytics event
-          triggers across client sites.
-        </li>
-      </ul>
-
-      <h3>
-        <span><strong>Web Developer</strong></span>
-        <span>West Advertising</span>
-        <span>2017&ndash;2020</span>
-      </h3>
-      <ul>
-        <li>
-          Created price unlocking features for auto dealership inventory with
-          email link and cookie authentication, dynamic html emails, scheduled
-          reminders, and CRM integration.
-        </li>
-        <li>
-          Internationalized WordPress sites for English and Spanish with
-          cookie-based language switcher, subdirectory routing, gettext
-          functions, and Poedit.
-        </li>
-        <li>
-          Built WordPress plugins for scheduled import/export of CSV records
-          to/from posts with attached media.
-        </li>
-        <li>Established version control with Git for agency web projects.</li>
-      </ul>
-
-      <h3>
-        <span><strong>Graphic & Web Designer</strong></span>
-        <span>West Advertising</span>
-        <span>2014&ndash;2017</span>
-      </h3>
-      <ul>
-        <li>
-          Built and tested weekly cross-platform HTML emails for multiple
-          clients.
-        </li>
-        <li>
-          Designed print, display, and outdoor advertisements, promotional
-          posters, and greeting cards.
-        </li>
-        <li>
-          Updated website content and graphics, including landing pages, blogs,
-          videos, offers, and specials.
-        </li>
-      </ul>
-
-      <h3>
-        <span><strong>Art Director</strong></span>
-        <span>Nimblefish Technologies</span>
-        <span>2013&ndash;2014</span>
-      </h3>
-      <ul>
-        <li>
-          Creative strategy, website and email design, branding, and video
-          editing on automated marketing campaigns for clients including Disney
-          Vacation Club and Florida Blue.
-        </li>
-        <li>
-          Jump-started adoption of mobile and responsive web development at
-          Nimblefish.
-        </li>
-      </ul>
+    <section class="skills">
+      <h2>Skills</h2>
+      <div>
+        <h3>Proficient</h3>
+        <ul>
+          <li>HTML</li>
+          <li>CSS/Sass</li>
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>PHP</li>
+          <li>git</li>
+          <li>React</li>
+          <li>Statamic</li>
+          <li>Astro</li>
+          <li>WordPress</li>
+          <li>Tailwind</li>
+          <li>Mantine</li>
+          <li>Alpine.js</li>
+          <li>Bootstrap</li>
+          <li>SVG</li>
+          <li>WCAG</li>
+          <li>Design Systems</li>
+          <li>Responsive Web Design</li>
+          <li>Figma</li>
+          <li>Adobe Creative Cloud</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Experienced</h3>
+        <ul>
+          <li>Next.js</li>
+          <li>Prisma</li>
+          <li>Angular</li>
+          <li>Storybook</li>
+          <li>Cypress</li>
+          <li>MySQL</li>
+          <li>PostgreSQL</li>
+          <li>SEO</li>
+          <li>Internationalization</li>
+        </ul>
+      </div>
     </section>
 
     <section class="education">
       <h2>Education</h2>
       <h3>
-        <span><strong>Bachelor of Arts, Fine Art</strong></span>
-        <span>The Evergreen State College</span>
-        <span>2004</span>
+        <span class="title">Bachelor of Arts, Fine Art</span>
+        <span class="employer">The Evergreen State College</span>
+        <span class="date">2004</span>
       </h3>
     </section>
   </div>
@@ -193,105 +210,82 @@ const description =
     --color-accent-900: var(--blue-900);
   }
 
-  .intro {
-    @media screen and (min-width: $mobile-breakpoint) {
-      grid-column: 1 / 2;
-    }
-  }
-
   p {
-    margin-block-end: 1.875rem;
-
-    @media (min-width: 390px) {
-      margin-block-end: 2.5rem;
-    }
+    margin-block-end: var(--space-md);
   }
 
   .content {
-    @media (min-width: 1200px) {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr), minmax(0, 1fr);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
     }
 
     h2 {
       color: var(--color-heading);
-      font-size: 1.5rem;
-      margin-block-end: 1.5rem;
-      text-transform: uppercase;
+      font-size: var(--font-size-xl);
+      font-weight: 800;
+      font-variation-settings: var(--width-expanded);
+    }
+
+    h3 {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: var(--font-size-lg);
       font-variation-settings: var(--width-normal);
+      line-height: var(--line-height-lg);
+      margin-block-end: var(--space-sm);
 
-      @media (min-width: 390px) {
-        font-size: 2rem;
-        font-variation-settings: var(--width-expanded);
+      @media (min-width: 768px) {
+        column-gap: 0.5em;
       }
-    }
 
-    section {
-      margin-block-end: 2.5rem;
-    }
-
-    .skills {
-      ul {
-        list-style-type: none;
-        margin-block-start: 0;
-        padding-inline-start: 0;
-
-        li {
-          font-size: 1.25rem;
-          padding-inline-start: 0.5em;
-          text-indent: -0.5em;
-        }
-      }
-    }
-
-    .employment,
-    .education {
-      h3 {
-        display: flex;
-        flex-direction: column;
-        font-size: 1.25rem;
-        font-variation-settings: var(--width-normal);
-        font-weight: 400;
-        margin-block-end: 1.5rem;
+      .title {
+        width: 100%;
 
         @media (min-width: 768px) {
-          flex-direction: row;
-          font-size: 1.5rem;
-          column-gap: 0.5em;
-        }
-
-        @media screen and (min-width: $mobile-breakpoint) {
-          flex-wrap: wrap;
-        }
-
-        span {
-          display: block;
-
-          @media (min-width: 768px) {
-            &:last-of-type {
-              margin-inline-start: auto;
-            }
-          }
-
-          @media screen and (min-width: $mobile-breakpoint) {
-            &:first-of-type {
-              width: 100%;
-            }
-          }
-
-          @media (min-width: 1550px) {
-            &:first-of-type {
-              width: auto;
-            }
-          }
+          width: auto;
         }
       }
 
-      ul {
-        font-size: 1rem;
-        line-height: 1.5;
-        margin-block-end: 1.5rem;
-        padding-inline-start: 0;
+      .employer,
+      .date {
+        font-weight: 400;
+      }
+
+      .employer {
+        margin-right: auto;
+      }
+    }
+
+    .experience ul {
+      display: flex;
+      flex-direction: column;
+      font-size: var(--font-size-md);
+      gap: var(--space-3xs);
+      line-height: var(--line-height-md);
+      margin: 0;
+      padding-inline-start: 0;
+    }
+
+    .skills ul {
+      columns: 1;
+      font-size: var(--font-size-md);
+      line-height: var(--line-height-md);
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      @media screen and (min-width: 500px) {
+        columns: 2;
+      }
+
+      @media screen and (min-width: 700px) {
+        columns: 3;
       }
     }
   }

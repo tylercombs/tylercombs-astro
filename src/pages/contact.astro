@@ -74,8 +74,9 @@ const description =
     label {
       color: var(--black);
       display: block;
-      @include font-size('md');
+      font-size: var(--font-size-md);
       font-weight: 800;
+      line-height: var(--line-height-md);
       margin-block-end: var(--space-xs);
     }
 
@@ -111,7 +112,8 @@ const description =
         border-radius: var(--border-radius);
         color: var(--input__color);
         display: block;
-        @include font-size('md');
+        font-size: var(--font-size-md);
+        line-height: var(--line-height-md);
         width: 100%;
         margin: -2px 0 0 -2px;
         padding: var(--space-2xs) var(--space-sm);
@@ -126,7 +128,7 @@ const description =
 
   #thanks {
     position: absolute;
-    font-size: 1.5rem;
+    font-size: var(--font-size-lg);
     font-variation-settings: var(--width-expanded);
     font-weight: 800;
     opacity: 0;
