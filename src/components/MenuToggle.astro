@@ -1,0 +1,155 @@
+<button
+  class="menu-toggle"
+  id="menuToggle"
+  aria-expanded="false"
+  aria-controls="menu">
+  <span class="visually-hidden">Menu</span>
+  <div id="menuToggleIcon" class="menu-toggle__icon">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round">
+      <g>
+        <path d="m3.7 6.8h16.5"></path>
+      </g>
+      <g>
+        <path d="m3.7 12h16.5"></path>
+      </g>
+      <g>
+        <path d="m3.7 17.2h16.5"></path>
+      </g>
+    </svg>
+  </div>
+</button>
+
+<style lang="scss">
+  @use '../styles/_mixins.scss' as *;
+  @use '../styles/_variables.scss' as *;
+
+  .menu-toggle {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--color-menu-toggle-icon);
+    cursor: pointer;
+    border-radius: 99rem;
+    padding: 0.5rem;
+    position: relative;
+    transition: color 0.1s 0.1s ease-in;
+
+    @at-root .no-js .menu-toggle {
+      display: none;
+    }
+
+    @media (min-width: $mobile-breakpoint) {
+      display: none;
+    }
+
+    &::before {
+      background-color: var(--color-menu-toggle-background);
+      border-radius: inherit;
+      content: '';
+      position: absolute;
+      inset: 0;
+      transform: scale(1);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: -1;
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    &:hover::before {
+      transform: scale(1.07);
+      transition:
+        background-color 0.1s 0.1s ease-out,
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    &:active::before {
+      animation: scale-down 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .menu-toggle__icon {
+      color: var(--color);
+      height: 1.75rem;
+      width: 1.75rem;
+    }
+
+    &[aria-expanded='true'] {
+      color: var(--color-menu-toggle-icon-open);
+      transition: color;
+
+      &::before {
+        background-color: var(--color-menu-toggle-background-open);
+        transition: background-color;
+      }
+
+      .menu-toggle__icon svg g {
+        transform-origin: center;
+        transition: transform 0.3s ease-in-out;
+
+        @media (prefers-reduced-motion: reduce) {
+          transition: none;
+        }
+
+        path {
+          transform-box: fill-box;
+          transform-origin: center;
+          transition: all 0.3s ease-in-out;
+
+          @media (prefers-reduced-motion: reduce) {
+            transition: none;
+          }
+        }
+
+        &:nth-of-type(1) {
+          transform: translateY(5.25px);
+
+          path {
+            transform: rotate(45deg);
+          }
+        }
+        &:nth-of-type(2) {
+          path {
+            scale: 0;
+          }
+        }
+        &:nth-of-type(3) {
+          transform: translateY(-5.25px);
+
+          path {
+            transform: rotate(-45deg);
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  import { menuOpen } from '../store.js';
+
+  const menuToggle = document.getElementById('menuToggle');
+
+  function toggleMenu() {
+    const isOpen = menuOpen.get();
+    if (isOpen) {
+      menuToggle?.setAttribute('aria-expanded', 'false');
+    } else {
+      menuToggle?.setAttribute('aria-expanded', 'true');
+    }
+    menuOpen.set(!isOpen);
+  }
+
+  menuToggle?.addEventListener('click', toggleMenu);
+</script>

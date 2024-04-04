@@ -32,8 +32,7 @@ const description =
         icon="mail"
         buttonType="submit"
         arrow={false}
-        class="button--primary"
-      >
+        class="button--primary">
         Send
       </Button>
     </form>
@@ -46,16 +45,23 @@ const description =
   @use '../styles/_mixins.scss' as *;
 
   :root {
-    --color-accent-50: var(--yellow-50);
-    --color-accent-100: var(--yellow-100);
-    --color-accent-200: var(--yellow-200);
-    --color-accent-300: var(--yellow-300);
-    --color-accent-400: var(--yellow-400);
-    --color-accent-500: var(--yellow-500);
+    --color-accent-0: var(--yellow-50);
+    --color-accent-200: var(--yellow-100);
+    --color-accent-400: var(--yellow-200);
+    --color-accent-500: var(--yellow-300);
     --color-accent-600: var(--yellow-600);
     --color-accent-700: var(--yellow-700);
     --color-accent-800: var(--yellow-800);
-    --color-accent-900: var(--yellow-900);
+    --color-accent-1000: var(--yellow-950);
+
+    --color-neutral-0: var(--navy-gray-0);
+    --color-neutral-100: var(--navy-gray-100);
+    --color-neutral-200: var(--navy-gray-200);
+    --color-neutral-300: var(--navy-gray-300);
+    --color-neutral-700: var(--navy-gray-700);
+    --color-neutral-800: var(--navy-gray-800);
+    --color-neutral-900: var(--navy-gray-900);
+    --color-neutral-1000: var(--navy-gray-1000);
   }
 
   .content {
@@ -72,7 +78,7 @@ const description =
     }
 
     label {
-      color: var(--black);
+      color: var(--color-input-label);
       display: block;
       font-size: var(--font-size-md);
       font-weight: 800;
@@ -87,13 +93,13 @@ const description =
               (2 * var(--border-width))
           ) / 2
       );
-      --border-width: 2px;
+      --border-width: 3px;
 
       margin-block-end: var(--space-md);
       position: relative;
 
       &::before {
-        background-color: var(--white);
+        background-color: var(--color-input-background);
         border-radius: var(--border-radius);
         content: '';
         position: absolute;
@@ -110,7 +116,7 @@ const description =
         background-color: transparent;
         border: var(--border-width) solid var(--color-input-border);
         border-radius: var(--border-radius);
-        color: var(--input__color);
+        color: var(--color-input);
         display: block;
         font-size: var(--font-size-md);
         line-height: var(--line-height-md);
@@ -118,6 +124,11 @@ const description =
         margin: -2px 0 0 -2px;
         padding: var(--space-2xs) var(--space-sm);
         resize: none;
+
+        &:focus-visible {
+          outline: 3px solid var(--color-focus-outline);
+          outline-offset: 0.5rem;
+        }
       }
 
       textarea {
@@ -137,7 +148,7 @@ const description =
     transform: translateX(-50%) translateY(-50%);
     transition: opacity 400ms;
 
-    &.show {
+    &.open {
       opacity: 1;
       transition: opacity 400ms;
     }
@@ -157,7 +168,7 @@ const description =
     })
       .then(() => {
         contactForm.classList.add('hide');
-        thanks?.classList.add('show');
+        thanks?.classList.add('open');
       })
       .catch((error) => console.log(error));
   });
