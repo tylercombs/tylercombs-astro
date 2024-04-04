@@ -3,7 +3,8 @@ import Icon from './Icon.astro';
 ---
 
 <div class="themeSwitch__container">
-  <fieldset id="themeSwitch" aria-label="Theme Switch" role="radiogroup">
+  <fieldset id="themeSwitch" role="radiogroup">
+    <legend class="visually-hidden">Theme Switch</legend>
     <label>
       <input type="radio" id="system" name="theme" value="system" checked />
       <span class="visually-hidden">System Mode</span>
@@ -28,27 +29,29 @@ import Icon from './Icon.astro';
 
   .themeSwitch__container {
     --border-radius: 999rem;
-    --border-width: 2px;
-    border: var(--border-width) solid var(--color-theme-switch-border);
-    border-radius: var(--border-radius);
-    padding: 2px;
+
+    padding: 4px;
     position: relative;
 
     &::before {
-      content: '';
       background-color: var(--color-theme-switch-background);
       border-radius: var(--border-radius);
+      content: '';
       position: absolute;
-      inset: calc(var(--border-width) * -1);
-      transform: translate(2px, 2px);
-      transition: transform 0.3s ease-out;
-      z-index: -10;
+      inset: 0;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
     }
 
-    &:hover {
-      &::before {
-        transform: translate(1px, 1px);
-        transition: transform 0.1s ease-in;
+    &:hover::before {
+      transform: scale(1.05);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
       }
     }
   }
@@ -67,11 +70,13 @@ import Icon from './Icon.astro';
       position: absolute;
       top: 0;
       bottom: 0;
+      transform: translateX(0) scale(1);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       width: calc(100% / 3);
-    }
 
-    &.transition::before {
-      transition: transform 0.3s ease-in-out;
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
     }
 
     &:has(#system:checked)::before {
@@ -86,11 +91,23 @@ import Icon from './Icon.astro';
       transform: translateX(200%);
     }
 
+    &:has(label:hover #system:checked)::before {
+      transform: translateX(0) scale(1.05);
+    }
+
+    &:has(label:hover #light:checked)::before {
+      transform: translateX(100%) scale(1.05);
+    }
+
+    &:has(label:hover #dark:checked)::before {
+      transform: translateX(200%) scale(1.05);
+    }
+
     input {
       @include visually-hidden;
     }
 
-    &.transition input:checked ~ .icon {
+    input:checked ~ .icon {
       transition: color 0.3s ease-in-out;
     }
 
@@ -103,6 +120,26 @@ import Icon from './Icon.astro';
       width: 2.25rem;
       height: 2.25rem;
       z-index: 10;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+        @media (prefers-reduced-motion: reduce) {
+          transition: none;
+        }
+      }
+
+      &:has(input:focus-visible) {
+        outline: 3px solid var(--color-focus-outline);
+        outline-offset: 0.5rem;
+        border-radius: 999rem;
+      }
 
       &:has(input:checked) {
         color: var(--color-theme-switch-icon-active);
@@ -130,7 +167,7 @@ import Icon from './Icon.astro';
   // Set switch state based on html data attr.
   const theme = document.documentElement.dataset.theme;
   const radio = document.getElementById(
-    theme ? theme : 'system',
+    theme ? theme : 'system'
   ) as HTMLInputElement;
   if (radio) {
     radio.checked = true;
@@ -140,10 +177,8 @@ import Icon from './Icon.astro';
   document.querySelectorAll('#themeSwitch input').forEach((element) =>
     element.addEventListener('change', (event) => {
       event.preventDefault();
-      // Add transition class to theme switch.
-      document.getElementById('themeSwitch')?.classList.add('transition');
       // Set theme on change.
       setTheme((event.target as HTMLInputElement).value);
-    }),
+    })
   );
 </script>
