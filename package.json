@@ -15,9 +15,9 @@
     "sass": "^1.64.2"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.4",
-    "@astrojs/sitemap": "^3.0.5",
-    "astro": "^4.4.0",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.4.1",
+    "astro": "^5.9.4",
     "nanostores": "^0.10.0",
     "typescript": "^5.3.3"
   }
